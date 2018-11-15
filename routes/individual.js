@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let individualService = require('../services/individual-service');
+let individualService = require('../services/individual-services');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
