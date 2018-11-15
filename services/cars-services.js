@@ -1,8 +1,8 @@
 var dbUtil = require('../utils/mySQLUtils');
 
-module.exports.getAllDealers = function() {
+module.exports.getAllCars = function() {
     return new Promise((resolve, reject) => {
-        let queryStr = 'select * from dealer';
+        let queryStr = 'select * from car';
         dbUtil.query(queryStr, function(err, result, fields) {
             if (err) {
                 reject(err);
