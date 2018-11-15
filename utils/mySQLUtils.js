@@ -1,11 +1,12 @@
 let config = require('config');
 let mysql = require('mysql');
 let pool = mysql.createPool({
-  connectionLimit : config.get('dbConfig.connectionLimit'),
+//   connectionLimit : config.get('dbConfig.connectionLimit'),
   host            : config.get('dbConfig.host'),
   user            : config.get('dbConfig.user'),
   password        : config.get('dbConfig.password'),
-  database        : config.get('dbConfig.user'),
+  database        : config.get('dbConfig.database'),
+//   port            : config.get('dbConfig.port'),
 });
 
 module.exports.query = function(sql, callback) {
@@ -28,13 +29,13 @@ module.exports.getDBPool = function() {
 
 
 module.exports.handleError = function(err) {
-	if(err) {
-	 	console.log(err);
-	  	throw err;
-	}
+ if(err) {
+   console.log(err);
+    throw err;
+ }
 };
 
 
 module.exports.getDBName = function() {
-	return config.get('dbConfig.user');
+ return config.get('dbConfig.user');
 };
