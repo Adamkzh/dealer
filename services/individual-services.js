@@ -35,3 +35,60 @@ module.exports.getIndividualByFirstAndLast = function(firstName, lastName) {
         });
     });
 };
+
+module.exports.addIndividualAccount = function(id, firstName, lastName, password) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'insert into individual (IndividualID, LastName, FirstName, Password) values ?';
+        let values = [
+            [id, lastName, firstName, password],
+        ];
+        dbUtil.query(queryStr, [values], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result[0])));
+        });
+    });
+};
+
+module.exports.updateIndividualAccount = function(id, firstName, lastName, password) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'update individual set LastName = ?, FirstName = ?, password = ? where IndividualID = ?';
+        let values = [
+            [firstName, lastName, password, id],
+        ];
+        dbUtil.query(queryStr, [values], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result[0])));
+        });
+    });
+};
+
+module.exports.deleteIndividualAccount = function(id) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'delete from individual where IndividualID =  ?';
+        dbUtil.query(queryStr, id, function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result[0])));
+        });
+    });
+};
