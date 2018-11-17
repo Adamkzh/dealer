@@ -8,12 +8,12 @@ let pool = mysql.createPool({
   database        : config.get('dbConfig.database'),
 });
 
-module.exports.query = function(sql, callback) {
+module.exports.query = function(sql, options, callback) {
     pool.getConnection(function(err, conn) {
         if (err) {
             callback(err, null, null);  
         } else {
-            conn.query(sql, function(err, results, fields) {
+            conn.query(sql, options, function(err, results, fields) {
                 // release connection
                 conn.release(); 
                 callback(err, results, fields); 
