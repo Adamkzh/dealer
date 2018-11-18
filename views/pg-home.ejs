@@ -1,11 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include ./meta-resources.ejs %>
+    <link rel='stylesheet' href='/stylesheets/home.css' />
 </head>
+
 <body>
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<% include ./top-nav.ejs %>
+
+<div class="dm-header container mt-5">
+    <div class="row">
+        <div class="col-lg-2 dm-header-logo-wrapper">
+            <a href="#" class="">
+                <img class="dm-header-logo" src="/images/logo_slices/logo@2x.png">
+            </a>
+        </div>
+        <div class="col-lg-8 dm-header-text-wrapper">
+            <h1 class="dm-header-text">DISH MASTER</h1>
+        </div>
+        <div class="col-lg-2">
+            <div class="dm-header-location-wrapper">
+                <span><img src="/images/locationIcon/locationIcon1.png"></span>
+                <span class="align-middle">SAN JOSE</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./body-nav.ejs %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 dm-home-left-panel">
+            <div class="row">
+                <img class="dm-home-banner-img" src="/images/homeHeaderBanner/homeHeaderBanner1.png">
+            </div>
+            <div class="row">
+                <div class="dm-home-highlights-wrapper col-md-6 pt-2">
+                    <h3>EDITOR PICK LISTS</h3>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="dm-home-highlights-list">
+                                <li><a href="<%=`restaurant-lists/1`%>">My Favorites in SJ</a></li>
+                                <li><a href="<%=`restaurant-lists/3`%>">Must Try</a></li>
+                                <li><a href="<%=`restaurant-lists/4`%>">Tester 6's Favorites</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="dm-home-highlights-list">
+                                <li><a href="<%=`restaurant-lists/5`%>">Tester 6's Best Chinese Foods</a></li>
+                                <li><a href="<%=`restaurant-lists/6`%>">Tester 6's SF Impression</a></li>
+                                <li><a href="<%=`restaurant-lists/7`%>">Tester2's SF Best</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="dm-home-highlights-wrapper col-md-6 pt-2 border-left">
+                    <h3>EDITOR PICK RESTAURANTS</h3>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="dm-home-highlights-list">
+                                <li><a href="<%=`/restaurant-detail?id=1`%>">Chef Zhao Bistro</a></li>
+                                <li><a href="<%=`/restaurant-detail?id=2`%>">Big T’s Seafood</a></li>
+                                <li><a href="<%=`/restaurant-detail?id=3`%>">Casa Lupe Number 2</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="dm-home-highlights-list">
+                                <li><a href="<%=`/restaurant-detail?id=4`%>">Ding Tai Fung</a></li>
+                                <li><a href="<%=`/restaurant-detail?id=5`%>">Bazille</a></li>
+                                <li><a href="<%=`/restaurant-detail?id=6`%>">Las Margaritas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 dm-home-right-panel">
+            <!-- login panel -->
+            <div class="row">
+                <form class="dm-home-login-form" id="homeLoginForm">
+                    <div class="form-group mt-4">
+                        <input type="text" class="form-control" id="userId"  placeholder="Enter ID">
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" class="form-control" name="type" value="individual" checked> Individual Account<br>
+                        <input type="radio" class="form-control" name="type" value="delear"> Dealer Account<br>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <button id="homeLoginBtn" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5">Login</button>
+                    <a id="homeSignUpBtn" class="dm-home-login-form-btn dm-btn-orange btn btn-primary" href="/signup">Sign Up</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="dm-footer mt-4 mb-3"><h6>Copyright 2018 Dealer</h6></div>
+
+
+<div id="dialog" title="Dish Master">
+    <p id="dialogMsg"></p>
+</div>
+<!-- libraries -->
+<% include ./lib-url.ejs %>
+
+<script type="text/javascript" src="/scripts/pg-home.js"></script>
 </body>
+
+
 </html>

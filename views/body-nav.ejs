@@ -1,0 +1,25 @@
+<div class="container dm-body-nav-wrapper mt-4">
+    <div class="nav nav-pills flex-sm-column flex-md-row">
+        <div class="flex-sm-fill dropdown">
+            <a id="dropdownMenuButton" class="dm-body-nav text-sm-center nav-link dropdown-toggle active" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+            <div class="dropdown-menu dm-body-nav-dropdown" aria-labelledby="dropdownMenuButton">
+                <ul>
+                    <li><a class="dropdown-item" href="/cuisine-category">All</a></li>
+                    <li><a class="dropdown-item" href="/cuisine-category">European</a></li>
+                    <li><a class="dropdown-item" href="/cuisine-category">North America</a></li>
+                    <li><a class="dropdown-item" href="/cuisine-category">Asian</a></li>
+                    <li><a class="dropdown-item" href="/cuisine-category">Middle East</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+        <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/cuisine?genre=Chinese">Popular</a>
+        <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/restaurant-lists">Yummylists</a>
+        <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/dashboard">Dashboard</a>
+        <form action="/search-result" method="post" class="form-inline">
+            <input name="term" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</div>

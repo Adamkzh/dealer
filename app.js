@@ -19,6 +19,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// set data and functions for templates
+// app.use(function(req, res, next) {
+//     res.locals.userInfo = req.session.user ? req.session.user : {};
+//     next();
+// });
+
 app.use('/', router);
 
 // catch 404 and forward to error handler

@@ -22,6 +22,7 @@ module.exports.postLogin = function(req, res, next) {
                 res.json({error: "ID and password does not match"});
             }
             res.status(200);
+            console.log(dealer);
             res.json(dealer);
         })
         .catch(err => {
