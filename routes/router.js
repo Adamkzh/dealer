@@ -8,6 +8,9 @@ router.get('/register', function(req, res, next) {
     // res.render('../views/register');
 });
 
+router.get('/login', function (req, res, next) {
+    res.render('index', {title: 'Dealer'});
+});
 router.post('/login', individualServices.getIndividualByFirstAndLast);
 
 router.get('/search', function(req, res, next) {
