@@ -5,7 +5,7 @@ let dealearServices = require('../services/dealer-services');
 let carServices = require('../services/cars-services');
 
 let ctlIndividual = require('../controller/ctl-individual');
-
+let ctlDealer = require('../controlelr/ctl-dealer');
 
 router.get('/', function (req, res, next) {
     res.render('pg-home', {title: "Car Dealer"});
@@ -14,8 +14,18 @@ router.get('/', function (req, res, next) {
 router.get('/register', function(req, res, next) {
     res.render('pg-register', {title: "Register"});
 });
+router.post('/register', function(req, res, next) {
+    res.render('pg-register', {title: "Register"});
+});
 
-router.post('/login', individualServices.getIndividualByFirstAndLast);
+router.post('/login', function(req, res, next) {
+    let userType = req.body.type;
+    if (userType === "individual") {
+        return ctlIndividual.postLogin(req, res, next);
+    } else {
+        return ctlDealer.postLogin(req, res, next);
+    }
+});
 
 router.get('/search', function(req, res, next) {
     dealearServices.getAllDealers()
