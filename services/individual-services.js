@@ -36,12 +36,12 @@ module.exports.getIndividualByFirstAndLast = function(firstName, lastName) {
     });
 };
 
-module.exports.addIndividualAccount = function(id, firstName, lastName, password) {
+module.exports.addIndividualAccount = function(firstName, lastName, password) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'insert into individual (IndividualID, LastName, FirstName, Password) values ?';
+            'insert into individual (LastName, FirstName, Password) values ?';
         let values = [
-            [id, lastName, firstName, password],
+            [lastName, firstName, password],
         ];
         dbUtil.query(queryStr, [values], function(err, result, fields) {
             if (err) {
