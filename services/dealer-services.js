@@ -58,7 +58,7 @@ module.exports.updateDealer = function(dealerId, dealerName, dealerUsername, dea
     });
 };
 
-module.exports.deleteDealer = function(dealerId) {
+module.exports.deleteDealerById = function(dealerId) {
     return new Promise((resolve, reject) => {
         let queryStr =
             'delete from dealer where DealerId =  ?';

@@ -1,30 +1,11 @@
 var dbUtil = require('../utils/mySQLUtils');
 
-module.exports.getCarByOwner = function(firstName, lastName) {
+module.exports.getServiceById = function(serviceId) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'select * from car ' +
-            'where car.Owner = ?';
-        let ownerFullName = firstName + " " + lastName;
-        dbUtil.query(queryStr, ownerFullName, function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result)));
-        });
-    });
-};
-
-module.exports.getCarById = function(carId) {
-    return new Promise((resolve, reject) => {
-        let queryStr =
-            'select * from car ' +
-            'where car.CarID = ?';
-        dbUtil.query(queryStr, carId, function(err, result, fields) {
+            'select * from service ' +
+            'where ServiceId = ?';
+        dbUtil.query(queryStr, serviceId, function(err, result, fields) {
             if (err) {
                 reject(err);
                 return;
@@ -37,12 +18,29 @@ module.exports.getCarById = function(carId) {
     });
 };
 
-module.exports.addCar = function(manufacture, model, year, owner) {
+module.exports.addService = function(serviceType) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'insert into car (Manufacture, Model, Year, Owner) values ?';
+            'insert into service (ServiceType) values ?';
+        dbUtil.query(queryStr, serviceType, function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result[0])));
+        });
+    });
+};
+
+module.exports.updateService = function(serviceId, serviceType) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'update service set ServiceType = ? where ServiceId = ?';
         let values = [
-            [manufacture, model, year, owner],
+            [serviceType, serviceId],
         ];
         dbUtil.query(queryStr, [values], function(err, result, fields) {
             if (err) {
@@ -57,31 +55,11 @@ module.exports.addCar = function(manufacture, model, year, owner) {
     });
 };
 
-module.exports.updateCarOwner = function(carId, owner) {
+module.exports.deleteServiceById = function(serviceId) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'update car set Owner = ? where CarID = ?';
-        let values = [
-            [owner, carId],
-        ];
-        dbUtil.query(queryStr, [values], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result[0])));
-        });
-    });
-};
-
-module.exports.deleteCarById = function(carId) {
-    return new Promise((resolve, reject) => {
-        let queryStr =
-            'delete from car where CarID =  ?';
-        dbUtil.query(queryStr, carId, function(err, result, fields) {
+            'delete from service where ServiceId = ?';
+        dbUtil.query(queryStr, serviceId, function(err, result, fields) {
             if (err) {
                 reject(err);
                 return;

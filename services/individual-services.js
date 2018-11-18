@@ -76,7 +76,7 @@ module.exports.updateIndividualAccount = function(id, firstName, lastName, passw
     });
 };
 
-module.exports.deleteIndividualAccount = function(id) {
+module.exports.deleteIndividualAccountById = function(id) {
     return new Promise((resolve, reject) => {
         let queryStr =
             'delete from individual where IndividualID =  ?';
