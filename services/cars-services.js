@@ -40,7 +40,7 @@ module.exports.getCarById = function(carId) {
 module.exports.addCar = function(manufacture, model, year, owner) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'insert into individual (Manufacture, Model, Year, Owner) values ?';
+            'insert into car (Manufacture, Model, Year, Owner) values ?';
         let values = [
             [manufacture, model, year, owner],
         ];
