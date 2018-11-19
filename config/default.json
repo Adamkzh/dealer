@@ -1,0 +1,12 @@
+{
+  "dbConfig": {
+    "host": "54.189.113.28",
+    "user": "root",
+    "password": "root",
+    "database": "cmpe_226",
+    "connectionLimit": 20
+  },
+  "mongoDBConfig": {
+    "connectionStr": "mongodb://admin:Cmpe280@ds119350.mlab.com:19350/dish-master-demo"
+  }
+}
