@@ -1,11 +1,9 @@
 let express = require('express');
 let router = express.Router();
-let individualServices = require('../services/individual-services');
-let dealearServices = require('../services/dealer-services');
-let carServices = require('../services/cars-services');
 
 let ctlIndividual = require('../controller/ctl-individual');
 let ctlDealer = require('../controller/ctl-dealer');
+let ctlCar = require('../controller/ctl-car');
 
 router.get('/', function (req, res, next) {
     res.render('pg-home', {title: "Car Dealer"});
@@ -32,15 +30,7 @@ router.post('/login', function(req, res, next) {
     }
 });
 
-router.get('/search', function(req, res, next) {
-    dealearServices.getAllDealers()
-        .then((result) => {
-            console.log(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });
-});
+router.get('/search', ctlCar.getSearch());
 
 router.get('/post-car', function(req, res, next) {
     carServices.getAllCars()
