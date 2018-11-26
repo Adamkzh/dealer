@@ -30,12 +30,12 @@ router.post('/login', function(req, res, next) {
     }
 });
 
-router.get('/search', ctlCar.getSearch());
+router.get('/search', ctlCar.getSearch);
 
 router.get('/post-car', function (req, res, next) {
     res.render('pg-post-car', {title: "Car Post"});
 });
-router.post('/post-car', ctlCar.postCar());
+router.post('/post-car', ctlCar.postCar);
 
 router.get('/edit-post', function(req, res, next) {
     carServices.getAllCars()
