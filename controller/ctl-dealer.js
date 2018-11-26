@@ -31,3 +31,29 @@ module.exports.postLogin = function(req, res, next) {
             res.json({error: "log in failed"});
         });
 };
+
+module.exports.postRegister = function(req, res, next) {
+    let {dealerName, dealderUsername, dealerPassword} = {...req.body};
+    if (!dealerName || dealerName.length === 0) {
+        res.json({error: "dealer name cannot be empty"});
+        return;
+    }
+    if (!dealderUsername || dealderUsername.length === 0) {
+        res.json({error: "dealer account user name cannot be empty"});
+        return;
+    }
+    if (!dealerPassword || dealerPassword.length === 0) {
+        res.json({error: "dealer password cannot be empty"});
+    }
+    dealerServices.addDealer(dealerName, dealderUsername, dealerPassword)
+        .then(dealer => {
+            res.status(200);
+            console.log(dealer);
+            res.json(dealer);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400);
+            res.json({error: "registration failed"});
+        });
+};

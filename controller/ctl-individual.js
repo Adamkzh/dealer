@@ -30,3 +30,29 @@ module.exports.postLogin = function(req, res, next) {
             res.json({error: "log in failed"});
         });
 };
+
+module.exports.postRegister = function(req, res, next) {
+    let {lastName, firstName, password} = {...req.body};
+    if(!lastName || lastName.length === 0) {
+        res.json({error: "last name cannot be empty"});
+        return;
+    }
+    if(!firstName || firstName.length === 0) {
+        res.json({error: "first name cannot be empty"});
+        return;
+    }
+    if(!password || password.length === 0) {
+        res.json({error: "password cannot be empty"});
+        return;
+    }
+    individualServices.addIndividualAccount(firstName, lastName, password)
+        .then(individual => {
+            res.status(200);
+            res.json(individual);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400);
+            res.json({error: "individual account registration failed"});
+        });
+};

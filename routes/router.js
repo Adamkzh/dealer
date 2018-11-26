@@ -15,17 +15,21 @@ router.get('/register', function(req, res, next) {
     res.render('pg-register', {title: "Register"});
 });
 router.post('/register', function(req, res, next) {
-    res.render('pg-register', {title: "Register"});
+    let userType = req.body.type;
+    if (userType === "individual") {
+        return ctlIndividual.postRegister(req, res, next);
+    } else {
+        return ctlDealer.postRegister(req, res, next);
+    }
 });
 
 router.post('/login', function(req, res, next) {
     let userType = req.body.type;
-    console.log(req.body);
-    // if (userType === "individual") {
-    //     return ctlIndividual.postLogin(req, res, next);
-    // } else {
+    if (userType === "individual") {
+        return ctlIndividual.postLogin(req, res, next);
+    } else {
         return ctlDealer.postLogin(req, res, next);
-    // }
+    }
 });
 
 router.get('/search', function(req, res, next) {
