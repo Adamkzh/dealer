@@ -48,6 +48,57 @@
       padding: 20px;
       text-align: center;
     }
+
+    table.table1 {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    table.table1 td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    table.table1 th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    table.table1 tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    table.table2 {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .previous {
+        background-color: #f1f1f1;
+        color: black;
+    }
+
+    .next {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .round {
+        border-radius: 50%;
+    }
     </style>
 </head>
 
@@ -84,9 +135,8 @@
                 <br>
                 <br>
                 <br>
-				<table>
+				<table class="table2">
 					<tr>
-						<th><h1>Car Listings:</h1></th>
 					</tr>
                       <tr>
                         <th><img src="/images/home/car1.png" alt="Trulli" width="350" height="250"></th>
@@ -118,7 +168,7 @@
                     </div>
                     <div>
 
-                    <table style="width:100%">
+                    <table class="table2" style="width:100%" >
                         <tr>
                         <th> <button id="homeLoginBtn" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5">Login</button></th>
                         <th><a id="homeSignUpBtn" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5" href="/register">Sign Up</a></th> 
@@ -135,9 +185,127 @@
     </div>
 </div>
 
-
-<div class="dm-footer mt-4 mb-3"><h6>Copyright 2018 Dealer</h6></div>
-
+<br>
+<br>
+<br>
+<br>
+<h2>Cars On Sale!</h2>
+<table class="table1">
+  <tr>
+    <th>Car ID</th>
+    <th>Manufacture</th>
+    <th>Model and Year</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Dolphin, common</td>
+    <td>Quest 1999</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Slender loris</td>
+    <td>RX-8</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Common goldeneye</td>
+    <td>Escalade EXT</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Screamer, crested</td>
+    <td>G-Class 2005</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>White-faced</td>
+    <td>944 1998</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Caracara</td>
+    <td>Regal 1998</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Cockatoo, red-breasted</td>
+    <td>Legacy 1990</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Pheasant, ring-necked</td>
+    <td>G-Series 1995</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Buttermilk snake</td>
+    <td>SVX 1992</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>Hartebeest, red</td>
+    <td>Space 1992</td>
+    <tr>
+    <td>11</td>
+    <td>Dolphin, common</td>
+    <td>Quest 1999</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>Slender loris</td>
+    <td>RX-8</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>Common goldeneye</td>
+    <td>Escalade EXT</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>Screamer, crested</td>
+    <td>G-Class 2005</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>White-faced</td>
+    <td>944 1998</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>Caracara</td>
+    <td>Regal 1998</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>Cockatoo, red-breasted</td>
+    <td>Legacy 1990</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>Pheasant, ring-necked</td>
+    <td>G-Series 1995</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td>Buttermilk snake</td>
+    <td>SVX 1992</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>Hartebeest, red</td>
+    <td>Space 1992</td>
+  </tr>
+</table>
+<br>
+<br>
+<br>
+<div align="center">
+<a href="#" class="previous round">&#8249;</a>
+<a href="#" class="next round">&#8250;</a>
+</div>
+<br>
+<br>
+<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
 <script type="text/javascript" src="/scripts/pg-home.js"></script>
 </body>
 

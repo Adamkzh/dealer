@@ -24,7 +24,6 @@ router.post('/register', function(req, res, next) {
     }
 });
 
-
 router.post('/login', function(req, res, next) {
     let userType = req.body.type;
     if (userType === "individual") {
