@@ -47,7 +47,7 @@ router.get('/post-car', function (req, res, next) {
 router.post('/post-car', ctlCar.postCar);
 
 router.get('/edit-post', function(req, res, next) {
-    carServices.getAllCars()
+    ctlCar.getSearch()
         .then((result) => {
             console.log(result);
         })
