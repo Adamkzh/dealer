@@ -37,10 +37,11 @@ module.exports.getCarById = function(carId) {
     });
 };
 
+
 module.exports.getAllCars = function() {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'select * from car ';
+            'select * from car';
         dbUtil.query(queryStr, [], function(err, result, fields) {
             if (err) {
                 reject(err);
@@ -49,7 +50,7 @@ module.exports.getAllCars = function() {
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+            resolve(JSON.parse(JSON.stringify(result)));
         });
     });
 };

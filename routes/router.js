@@ -39,13 +39,15 @@ router.get('/search', ctlCar.getSearch);
 router.get('/profile', function(req, res, next) {
     res.render('pg-profile', {title: "Profile"});
 });
+
 router.get('/post-car', function (req, res, next) {
     res.render('pg-post-car', {title: "Car Post"});
 });
+
 router.post('/post-car', ctlCar.postCar);
 
 router.get('/edit-post', function(req, res, next) {
-    carServices.getAllCars()
+    ctlCar.getSearch()
         .then((result) => {
             console.log(result);
         })
