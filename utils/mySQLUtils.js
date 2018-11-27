@@ -5,7 +5,6 @@ let pool = mysql.createPool({
   host            : config.get('dbConfig.host'),
   user            : config.get('dbConfig.user'),
   password        : config.get('dbConfig.password'),
-  database        : config.get('dbConfig.database'),
 });
 
 module.exports.query = function(sql, options, callback) {
