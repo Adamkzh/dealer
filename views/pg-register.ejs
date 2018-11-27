@@ -11,11 +11,11 @@
         <div class="row">
             <div class="col-lg-3 dm-header-logo-wrapper">
                 <a href="#" class="">
-                    <img class="dm-header-logo" src="/images/logo_slices/logo@2x.png">
+                    <img class="dm-header-logo" src="images/logo_slices/logo@2x.png"/>
                 </a>
             </div>
             <div class="col-lg-6 dm-header-text-wrapper">
-                <h1 class="dm-header-text">DISH MASTER</h1>
+                <h1 class="dm-header-text">Auto Sales</h1>
             </div>
             <div class="col-lg-3">
                 <div class="dm-header-location-wrapper">
@@ -34,26 +34,26 @@
             </div>
 
             <div class="col-lg-5 container">
-                <form class="form-horizontal mt-5" id="signupForm" action='/signup' method="POST">
+                <form class="form-horizontal mt-5" id="signupForm" action='/register' method="POST">
                     <fieldset>
                         <div class="form-group">
                             <!-- LastName -->
-                            <label class="control-label"  for="LastName">LastName:</label>
-                            <input type="text" id="inputLastName" name="LastName" placeholder="" class="form-control" minlength=6 maxlength=12 required >
+                            <label class="control-label"  for="lastName">LastName:</label>
+                            <input type="text" id="inputLastName" name="lastName" placeholder="" class="form-control" minlength=6 maxlength=12 required >
                             <small class="form-text text-muted">LastName must contain 6-12 characters.</small>
                         </div>
 
                         <div class="form-group">
                             <!-- FirstName -->
-                            <label class="control-label" for="FirstName">FirstName:</label>
-                            <input type="text" id="inputFirstName" name="FirstName" placeholder="" class="form-control" required>
+                            <label class="control-label" for="firstName">FirstName:</label>
+                            <input type="text" id="inputFirstName" name="firstName" placeholder="" class="form-control" required>
                             <small class="form-text text-muted">LastName must contain 6-12 characters.</small>
                         </div>
 
                         <div class="form-group">
                             <!-- UserName -->
-                            <label class="control-label" for="UserName">UserName:</label>
-                            <input type="text" id="inputUserName" name="UserName" placeholder="" class="form-control" required>
+                            <label class="control-label" for="userName">UserName:</label>
+                            <input type="text" id="inputUserName" name="userName" placeholder="" class="form-control" required>
                             <small class="form-text text-muted">UserName must contain 6-12 characters.</small>
                         </div>
 
@@ -70,7 +70,16 @@
                             <input type="password" id="inputPwdConfirm" name="userPwdConfirm" placeholder="" class="form-control" minlength=6 maxlength=12 required>
                         </div>
 
-                        
+                        <div class="form-group">
+                        	<div>
+							   <small class="form-text text-muted">User Type? </small>
+							   <br />
+							  <select name="type">
+								  <option value="individual">Individual</option>
+								  <option value="dealer">Dealer</option>
+								</select>
+  							</div>
+                        </div>>
 
                         <button class="btn dm-btn-success">Register</button>
                     </fieldset>
@@ -79,7 +88,7 @@
         </div>
     </div>
 
-<div class="dm-footer mt-4 mb-3"><h6>Copyright 2018 Dish Master</h6></div>
+<div class="dm-footer mt-4 mb-3"><h6>Copyright 2018 Auto Sells</h6></div>
 
 <div id="dialog" title="Dish Master">
     <p id="dialogMsg"></p>

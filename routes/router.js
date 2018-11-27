@@ -5,6 +5,7 @@ let ctlIndividual = require('../controller/ctl-individual');
 let ctlDealer = require('../controller/ctl-dealer');
 let ctlCar = require('../controller/ctl-car');
 
+
 router.get('/', function (req, res, next) {
     res.render('pg-home', {title: "Car Dealer"});
 });
@@ -14,12 +15,15 @@ router.get('/register', function(req, res, next) {
 });
 router.post('/register', function(req, res, next) {
     let userType = req.body.type;
+    console.log(userType);
+    console.log(req.body);
     if (userType === "individual") {
         return ctlIndividual.postRegister(req, res, next);
     } else {
         return ctlDealer.postRegister(req, res, next);
     }
 });
+
 
 router.post('/login', function(req, res, next) {
     let userType = req.body.type;
@@ -32,6 +36,9 @@ router.post('/login', function(req, res, next) {
 
 router.get('/search', ctlCar.getSearch);
 
+router.get('/profile', function(req, res, next) {
+    res.render('pg-profile', {title: "Profile"});
+});
 
 router.get('/post-car', function (req, res, next) {
     res.render('pg-post-car', {title: "Car Post"});
