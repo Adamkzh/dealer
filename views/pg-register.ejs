@@ -1,11 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include ./meta-resources.ejs %>
+    <link rel='stylesheet' href='/stylesheets/signup.css' />
+
 </head>
 <body>
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+    <% include ./top-nav.ejs %>
+    <div class="dm-header container mt-5">
+        <div class="row">
+            <div class="col-lg-3 dm-header-logo-wrapper">
+                <a href="#" class="">
+                    <img class="dm-header-logo" src="/images/logo_slices/logo@2x.png">
+                </a>
+            </div>
+            <div class="col-lg-6 dm-header-text-wrapper">
+                <h1 class="dm-header-text">DISH MASTER</h1>
+            </div>
+            <div class="col-lg-3">
+                <div class="dm-header-location-wrapper">
+                    <span><img src="/images/locationIcon/locationIcon1.png"></span>
+                    <span class="align-middle">SAN JOSE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dm-signup container mt-4">
+        <div class="row">
+
+            <div class="col-lg-7 dm-signup-image">
+                <img class="signup" src="/images/signup/signup1.png">
+            </div>
+
+            <div class="col-lg-5 container">
+                <form class="form-horizontal mt-5" id="signupForm" action='/signup' method="POST">
+                    <fieldset>
+                        <div class="form-group">
+                            <!-- LastName -->
+                            <label class="control-label"  for="LastName">LastName:</label>
+                            <input type="text" id="inputLastName" name="LastName" placeholder="" class="form-control" minlength=6 maxlength=12 required >
+                            <small class="form-text text-muted">LastName must contain 6-12 characters.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- FirstName -->
+                            <label class="control-label" for="FirstName">FirstName:</label>
+                            <input type="text" id="inputFirstName" name="FirstName" placeholder="" class="form-control" required>
+                            <small class="form-text text-muted">LastName must contain 6-12 characters.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- UserName -->
+                            <label class="control-label" for="UserName">UserName:</label>
+                            <input type="text" id="inputUserName" name="UserName" placeholder="" class="form-control" required>
+                            <small class="form-text text-muted">UserName must contain 6-12 characters.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Password-->
+                            <label class="control-label" for="password">Password:</label>
+                            <input type="password" id="inputPwd" name="userPwd" placeholder="" class="form-control" minlength=6 maxlength=12 required>
+                            <small class="form-text text-muted">Password must contain 6-12 characters.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Password -->
+                            <label class="control-label"  for="password_confirm">Password (Confirm):</label>
+                            <input type="password" id="inputPwdConfirm" name="userPwdConfirm" placeholder="" class="form-control" minlength=6 maxlength=12 required>
+                        </div>
+
+                        
+
+                        <button class="btn dm-btn-success">Register</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<div class="dm-footer mt-4 mb-3"><h6>Copyright 2018 Dish Master</h6></div>
+
+<div id="dialog" title="Dish Master">
+    <p id="dialogMsg"></p>
+</div>
+<!-- libraries -->
+<% include ./lib-url.ejs %>
+<script type="text/javascript" src="/scripts/pg-signup.js"></script>
 </body>
+
+
 </html>
