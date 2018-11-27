@@ -1,0 +1,21 @@
+.dm-topnav
+{
+    height: 2rem;
+    padding-right: 2rem;
+}
+.dm-topnav-icons-wrapper
+{
+    float: right;
+}
+.dm-topnav-icons
+{
+    list-style: none;
+    display: inline-block;
+    margin-right: 0.8rem;
+}
+
+#dm-topnav-user-icon
+{
+    border-left: 2px solid #808080;
+    padding-left: 0.8rem;
+}
