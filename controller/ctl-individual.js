@@ -21,6 +21,8 @@ module.exports.postLogin = function(req, res, next) {
                 res.status(404);
                 res.json({error: "ID and password does not match"});
             }
+            //persist user to session
+            req.session.user = individual;
             res.status(200);
             res.json(individual);
         })
