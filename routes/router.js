@@ -5,6 +5,7 @@ let ctlIndividual = require('../controller/ctl-individual');
 let ctlDealer = require('../controller/ctl-dealer');
 let ctlCar = require('../controller/ctl-car');
 
+
 router.get('/', function (req, res, next) {
     res.render('pg-home', {title: "Car Dealer"});
 });
@@ -22,9 +23,6 @@ router.post('/register', function(req, res, next) {
 });
 
 
-router.get('/profile', function(req, res, next){
-    res.render('pg-profile',{title: "Profile"});
-});
 
 router.post('/login', function(req, res, next) {
     let userType = req.body.type;
