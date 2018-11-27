@@ -4,6 +4,43 @@
     <% include ./meta-resources.ejs %>
     <link rel='stylesheet' href='/stylesheets/signup.css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    button.social-signin {
+	  margin-bottom: 20px;
+	  width: 275px;
+	  height: 36px;
+	  border: none;
+	  border-radius: 4px;
+	  color: #FFF;
+	  font-family: 'Roboto', sans-serif;
+	  font-weight: 500;
+	  transition: 0.2s ease;
+	  cursor: pointer;
+	}
+
+	button.social-signin:hover,
+	button.social-signin:focus {
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	  transition: 0.2s ease;
+	}
+
+	button.social-signin:active {
+	  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	  transition: 0.2s ease;
+	}
+
+	button.social-signin.facebook {
+	  background: #32508E;
+	}
+
+	button.social-signin.twitter {
+	  background: #55ACEE;
+	}
+
+	button.social-signin.google {
+	  background: #DD4B39;
+	}
+    </style>
 </head>
 <body>
     <% include ./top-nav.ejs %>
@@ -87,11 +124,24 @@
                         <p>Create and you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
                     </fieldset>
                 </form>
+                <table>
+                	<tr>
+				    <td>&nbsp;&nbsp;<button class="social-signin facebook">Log in with facebook</button></td>
+				  	</tr>
+				  	<tr>
+				    <td>&nbsp;&nbsp;<button class="social-signin twitter">Log in with Twitter</button></td>
+				  	</tr>
+				  	<tr>
+				    <td>&nbsp;&nbsp;<button class="social-signin google">Log in with Google+</button></td>
+				  	</tr>
+                </table>
             </div>
         </div>
     </div>
-
-<div class="dm-footer mt-4 mb-3"><h6>Copyright 2018 Auto Sells</h6></div>
+<br>
+<br>
+<br>
+<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
 
 <div id="dialog" title="Dish Master">
     <p id="dialogMsg"></p>
