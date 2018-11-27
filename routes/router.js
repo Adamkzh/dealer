@@ -41,7 +41,7 @@ router.get('/profile', function(req, res, next) {
 });
 
 router.get('/post-car', function (req, res, next) {
-    res.render('pg-post-car', {title: "Car Post"});
+    res.render('create-post', {title: "Car Post"});
 });
 
 router.post('/post-car', ctlCar.postCar);
