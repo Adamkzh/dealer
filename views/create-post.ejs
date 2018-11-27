@@ -7,17 +7,37 @@
 </head>
 <body>
     <% include ./top-nav.ejs %>
-        <div class="dm-restaurant-user-action">
-            <button class="btn-sm" id="writeReviewBtn">
-                <img class="material-icons useraction-adjust mr-2" src="/images/writeviewIcon/writeviewIcon1.png"
-                     alt="review">
-            </button>
-        </div>
+    <div class="dm-restaurant-user-action">
+        <button class="btn-sm" id="writeReviewBtn">
+            <img class="material-icons useraction-adjust mr-2" src="/images/writeviewIcon/writeviewIcon1.png"
+                 alt="review">
+        </button>
+    </div>
+    <div id="dialog" title="Dish Master">
+        <form action="/cars/post" method="POST">
+            <fieldset>
+                <div class="form-group">
+                    <label for="manufacture">Manufacture</label>
+                    <input type="text" name="manufacture" id="manufacture" placeholder="input manufacture"
+                           class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input type="text" name="model" id="model" placeholder="input model" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="text" name="year" id="year" placeholder="input year" class="form-control" required>
+                </div>
 
+                <input type="hidden" name="owner" value="">
+                <input type="submit" class="btn btn-success mt-2" value="Post Car">
+            </fieldset>
+        </form>
+    </div>
 
     <!-- libraries -->
     <% include ./lib-url.ejs %>
     <script src="/scripts/pg-create-post.js"></script>
-
 </body>
 </html>
