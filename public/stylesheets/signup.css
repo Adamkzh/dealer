@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Arial Bold";
+    src: url("../fonts/(Arial-BoldMT)Arial Bold.ttf") format('truetype')
+
+}
+.control-label{
+    color: #DA8B09;
+    font-family: Arial Bold;
+}
+.dm-signup{
+    background-color: #FFFFFF;
+}
+.dm-signup-image{
+    padding-left: 0;
+    padding-right: 10;
+}
+
+.dm-btn-success{
+    background-color: #E58953;
+    color: #FFFFFF;
+    width: 270px;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.signup{
+    width: 85%;
+}
+
+input{
+    max-width: 300px;
+}
