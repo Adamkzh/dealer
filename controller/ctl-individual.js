@@ -32,7 +32,7 @@ module.exports.postLogin = function(req, res, next) {
 };
 
 module.exports.postRegister = function(req, res, next) {
-    let {lastName, firstName, password} = {...req.body};
+    let {lastName, firstName, userPwd} = {...req.body};
     if(!lastName || lastName.length === 0) {
         res.json({error: "last name cannot be empty"});
         return;
@@ -41,11 +41,11 @@ module.exports.postRegister = function(req, res, next) {
         res.json({error: "first name cannot be empty"});
         return;
     }
-    if(!password || password.length === 0) {
+    if(!userPwd || userPwd.length === 0) {
         res.json({error: "password cannot be empty"});
         return;
     }
-    individualServices.addIndividualAccount(firstName, lastName, password)
+    individualServices.addIndividualAccount(firstName, lastName, userPwd)
         .then(individual => {
             res.status(200);
             res.json(individual);

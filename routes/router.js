@@ -15,6 +15,8 @@ router.get('/register', function(req, res, next) {
 });
 router.post('/register', function(req, res, next) {
     let userType = req.body.type;
+    console.log(userType);
+    console.log(req.body);
     if (userType === "individual") {
         return ctlIndividual.postRegister(req, res, next);
     } else {
