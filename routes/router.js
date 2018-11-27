@@ -21,6 +21,11 @@ router.post('/register', function(req, res, next) {
     }
 });
 
+
+router.get('/profile', function(req, res, next){
+    res.render('pg-profile',{title: "Profile"});
+});
+
 router.post('/login', function(req, res, next) {
     let userType = req.body.type;
     if (userType === "individual") {
