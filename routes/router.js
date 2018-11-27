@@ -39,8 +39,10 @@ router.get('/search', function(req, res, next) {
 });
 
 router.get('/post-car', function(req, res, next) {
+	console.log("getting cars");
     carServices.getAllCars()
         .then((result) => {
+			res.status(200);
             console.log(result);
         })
         .catch(err => {

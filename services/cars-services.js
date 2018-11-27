@@ -37,10 +37,12 @@ module.exports.getCarById = function(carId) {
     });
 };
 
+/*
 module.exports.getAllCars = function() {
     return new Promise((resolve, reject) => {
+		console.log("in gett all cars")
         let queryStr =
-            'select * from car ';
+            'select * from car LIMIT 1';
         dbUtil.query(queryStr, [], function(err, result, fields) {
             if (err) {
                 reject(err);
@@ -52,7 +54,7 @@ module.exports.getAllCars = function() {
             resolve(JSON.parse(JSON.stringify(result[0])));
         });
     });
-};
+};*/
 
 module.exports.addCar = function(manufacture, model, year, owner) {
     return new Promise((resolve, reject) => {
