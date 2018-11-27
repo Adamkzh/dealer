@@ -25,7 +25,6 @@ router.post('/register', function(req, res, next) {
 });
 
 
-
 router.post('/login', function(req, res, next) {
     let userType = req.body.type;
     if (userType === "individual") {
@@ -37,6 +36,9 @@ router.post('/login', function(req, res, next) {
 
 router.get('/search', ctlCar.getSearch);
 
+router.get('/profile', function(req, res, next) {
+    res.render('pg-profile', {title: "Profile"});
+});
 router.get('/post-car', function (req, res, next) {
     res.render('pg-post-car', {title: "Car Post"});
 });
