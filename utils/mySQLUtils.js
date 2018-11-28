@@ -12,11 +12,29 @@ module.exports.query = function(sql, options, callback) {
         if (err) {
             callback(err, null, null);  
         } else {
-            conn.query(sql, options, function(err, results, fields) {
-                // release connection
-                conn.release(); 
-                callback(err, results, fields); 
-            });  
+            conn.beginTransaction(function(err) {
+               if (err) {
+                   throw err;
+               }
+               conn.query(sql, options, function(err, results, fields) {
+                   if (err) {
+                       return conn.rollback(function() {
+                           throw err;
+                       })
+                   }
+                   conn.commit(function(err) {
+                       if (err) {
+                           return connection.rollback(function() {
+                               throw err;
+                           });
+                       }
+                       console.log('commit success!');
+                   });
+                   // release connection
+                   conn.release();
+                   callback(err, results, fields);
+               });
+            });
         }  
     });  
 };
