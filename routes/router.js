@@ -4,6 +4,7 @@ let router = express.Router();
 let ctlIndividual = require('../controller/ctl-individual');
 let ctlDealer = require('../controller/ctl-dealer');
 let ctlCar = require('../controller/ctl-car');
+let ctlTransaction = require('../controller/ctl-transaction');
 
 
 router.get('/', function (req, res, next) {
@@ -44,6 +45,8 @@ router.get('/post-car', function (req, res, next) {
 });
 
 router.post('/post-car', ctlCar.postCar);
+
+router.post('/buy-car', ctlTransaction.buyCar);
 
 router.get('/edit-post', function(req, res, next) {
     ctlCar.getSearch()
