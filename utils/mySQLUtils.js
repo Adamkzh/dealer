@@ -24,7 +24,7 @@ module.exports.query = function(sql, options, callback) {
                    }
                    conn.commit(function(err) {
                        if (err) {
-                           return connection.rollback(function() {
+                           return conn.rollback(function() {
                                throw err;
                            });
                        }
