@@ -20,3 +20,14 @@ module.exports.postCar = function(req, res, next) {
             console.log(err);
         });
 };
+
+module.exports.editCar = function(req, res, next) {
+    let {carId, manufacture, model, year, owner} = {...req.body};
+    carServices.updateCarOwner(carId, manufacture, model, year, owner)
+        .then((result) => {
+            console.log(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
