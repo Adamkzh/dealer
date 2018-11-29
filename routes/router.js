@@ -8,9 +8,7 @@ let ctlTransaction = require('../controller/ctl-transaction');
 let ctlLogout = require('../controller/ctl-logout');
 
 
-router.get('/', function (req, res, next) {
-    res.render('pg-home', {title: "Car Dealer"});
-});
+router.get('/', ctlCar.getSearch);
 
 router.get('/register', function(req, res, next) {
     res.render('pg-register', {title: "Register"});

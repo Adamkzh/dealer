@@ -1,9 +1,11 @@
 let carServices = require('../services/cars-services');
 
 module.exports.getSearch = function(req, res, next) {
+    let postedCars = [];
     carServices.getAllCars()
         .then((result) => {
-            console.log(result);
+            postedCars = result;
+            res.render('pg-home', {title: "Car Dealer", postedCars: postedCars});
         })
         .catch(err => {
             console.log(err);
