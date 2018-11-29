@@ -15,6 +15,7 @@ router.get('/register', function(req, res, next) {
     res.render('pg-register', {title: "Register"});
 });
 router.post('/register-dealer', ctlDealer.postRegister);
+router.post('/register-individual', ctlIndividual.postRegister);
 
 router.post('/login', function(req, res, next) {
     let userType = req.body.type;
