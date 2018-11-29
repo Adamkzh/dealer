@@ -1,8 +1,10 @@
 <div class="container dm-body-nav-wrapper mt-4">
     <div class="nav nav-pills flex-sm-column flex-md-row">
         <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/">Home</a>
-        <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/profile">Profile</a>
-        <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/post-car">Create Posts</a>
-        <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/logout">Logout</a>
+        <% if (userInfo.IndividualID || userInfo.DealerId) { %>
+            <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/profile">Profile</a>
+            <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/post-car">Create Posts</a>
+            <a class="dm-body-nav flex-sm-fill text-sm-center nav-link" href="/logout">Logout</a>
+        <% } %>
     </div>
 </div>
