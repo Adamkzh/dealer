@@ -35,19 +35,19 @@ module.exports.postLogin = function(req, res, next) {
 };
 
 module.exports.postRegister = function(req, res, next) {
-    let {dealerName, dealderUsername, dealerPassword} = {...req.body};
+    let {dealerName, userName, password} = {...req.body};
     if (!dealerName || dealerName.length === 0) {
         res.json({error: "dealer name cannot be empty"});
         return;
     }
-    if (!dealderUsername || dealderUsername.length === 0) {
+    if (!userName || userName.length === 0) {
         res.json({error: "dealer account user name cannot be empty"});
         return;
     }
-    if (!dealerPassword || dealerPassword.length === 0) {
+    if (!password || password.length === 0) {
         res.json({error: "dealer password cannot be empty"});
     }
-    dealerServices.addDealer(dealerName, dealderUsername, dealerPassword)
+    dealerServices.addDealer(dealerName, userName, password)
         .then(dealer => {
             res.status(200);
             console.log(dealer);

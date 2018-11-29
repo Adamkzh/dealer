@@ -33,7 +33,7 @@ module.exports.addDealer = function(dealerName, dealerUsername, dealerPassword) 
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+            resolve(JSON.parse(JSON.stringify(result)));
         });
     });
 };

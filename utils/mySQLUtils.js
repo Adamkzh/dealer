@@ -5,13 +5,15 @@ let pool = mysql.createPool({
   host            : config.get('dbConfig.host'),
   user            : config.get('dbConfig.user'),
   password        : config.get('dbConfig.password'),
+  database      : config.get('dbConfig.database'),
 });
 
 module.exports.query = function(sql, options, callback) {
     pool.getConnection(function(err, conn) {
         if (err) {
-            callback(err, null, null);  
+            callback(err, null, null);
         } else {
+            console.log('before begin trans');
             conn.beginTransaction(function(err) {
                if (err) {
                    throw err;
@@ -35,8 +37,8 @@ module.exports.query = function(sql, options, callback) {
                    callback(err, results, fields);
                });
             });
-        }  
-    });  
+        }
+    });
 };
 
 module.exports.getDBPool = function() {
