@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-3 dm-header-logo-wrapper">
                 <a href="#" class="">
-                    <img class="dm-header-logo" src="/images/register/logo@2x.png"/ height="62" width="62">
+                    <img class="dm-header-logo" src="/images/register/logo@2x.png" height="62" width="62">
                 </a>
             </div>
             <div class="col-lg-6 dm-header-text-wrapper">
@@ -30,64 +30,22 @@
     <hr>
     <div class="dm-signup container mt-4">
         <div class="row">
-
             <div class="col-lg-7 dm-signup-image">
                 <img class="signup" src="/images/register/signup.png">
             </div>
-
+            <div id="registerTabs">
+                <ul>
+                    <li><a href="#register-dealer">Dealer</a></li>
+                    <li><a href="#register-individual">Individual</a></li>
+                </ul>
+                <div id="register-dealer">
+                    <% include ./dealer-register.ejs %>
+                </div>
+                <div id="register-individual">
+                    <% include ./individual-register.ejs %>
+                </div>
+            </div>
             <div class="col-lg-5 container">
-                <form class="form-horizontal mt-5" id="signupForm" action='/register' method="POST">
-                    <fieldset>
-                        <div class="form-group">
-                            <!-- LastName -->
-                            <label class="control-label"  for="lastName">LastName:</label>
-                            <input type="text" id="inputLastName" name="lastName" placeholder="" class="form-control" minlength=6 maxlength=12 required >
-                            <small class="form-text text-muted">LastName must contain 6-12 characters.</small>
-                        </div>
-
-                        <div class="form-group">
-                            <!-- FirstName -->
-                            <label class="control-label" for="firstName">FirstName:</label>
-                            <input type="text" id="inputFirstName" name="firstName" placeholder="" class="form-control" required>
-                            <small class="form-text text-muted">LastName must contain 6-12 characters.</small>
-                        </div>
-
-                        <div class="form-group">
-                            <!-- UserName -->
-                            <label class="control-label" for="userName">UserName:</label>
-                            <input type="text" id="inputUserName" name="userName" placeholder="" class="form-control" required>
-                            <small class="form-text text-muted">UserName must contain 6-12 characters.</small>
-                        </div>
-
-                        <div class="form-group">
-                            <!-- Password-->
-                            <label class="control-label" for="password">Password:</label>
-                            <input type="password" id="inputPwd" name="userPwd" placeholder="" class="form-control" minlength=6 maxlength=12 required>
-                            <small class="form-text text-muted">Password must contain 6-12 characters.</small>
-                        </div>
-
-                        <div class="form-group">
-                            <!-- Password -->
-                            <label class="control-label"  for="password_confirm">Password (Confirm):</label>
-                            <input type="password" id="inputPwdConfirm" name="userPwdConfirm" placeholder="" class="form-control" minlength=6 maxlength=12 required>
-                        </div>
-
-                        <div class="form-group">
-                        	<div>
-							   <small class="form-text text-muted">User Type? </small>
-							   <br />
-							  <select name="type">
-								  <option value="individual">Individual</option>
-								  <option value="dealer">Dealer</option>
-								</select>
-  							</div>
-                        </div>
-                        <button class="btn dm-btn-success">Register </button>
-                        <br>
-                        <br>
-                        <p>Create and you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-                    </fieldset>
-                </form>
                 <table>
                 	<tr>
 				    <td>&nbsp;&nbsp;<button class="social-signin facebook">Log in with facebook</button></td>
@@ -112,6 +70,7 @@
 </div>
 <!-- libraries -->
 <% include ./lib-url.ejs %>
+<script type="text/javascript" src="/scripts/pg-register.js"></script>
 <script type="text/javascript" src="/scripts/pg-signup.js"></script>
 </body>
 
