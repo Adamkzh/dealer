@@ -51,7 +51,7 @@ module.exports.postRegister = function(req, res, next) {
         .then(dealer => {
             res.status(200);
             console.log(dealer);
-            res.render('pg-home', {title: "Car Dealer"});
+            res.redirect('/');
         })
         .catch(err => {
             console.log(err);
