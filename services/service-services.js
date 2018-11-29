@@ -52,6 +52,23 @@ module.exports.addService = function(serviceType) {
     });
 };
 
+module.exports.addServiceCar = function(serviceID, carID, dateTime) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'insert into service_on (ServiceID, CarID, Date_Time) values ?';
+        dbUtil.query(queryStr, [serviceID, carID, dateTime], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result[0])));
+        });
+    });
+};
+
 module.exports.updateService = function(serviceId, serviceType) {
     return new Promise((resolve, reject) => {
         let queryStr =

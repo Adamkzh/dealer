@@ -36,6 +36,23 @@ module.exports.getIndividualByFirstAndLast = function(firstName, lastName) {
     });
 };
 
+module.exports.addIndividualCar = function(individualId, carId) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'insert into individual_owns (IndividualID, CarID) values ?';
+        dbUtil.query(queryStr, [individualId, carId], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result[0])));
+        });
+    });
+};
+
 module.exports.addIndividualAccount = function(firstName, lastName, password) {
     return new Promise((resolve, reject) => {
         let queryStr =
