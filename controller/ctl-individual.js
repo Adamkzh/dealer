@@ -50,7 +50,8 @@ module.exports.postRegister = function(req, res, next) {
     individualServices.addIndividualAccount(firstName, lastName, password)
         .then(individual => {
             res.status(200);
-            res.json(individual);
+            console.log(individual);
+            res.render('pg-home', {title: "Car Dealer"});
         })
         .catch(err => {
             console.log(err);

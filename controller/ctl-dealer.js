@@ -51,7 +51,7 @@ module.exports.postRegister = function(req, res, next) {
         .then(dealer => {
             res.status(200);
             console.log(dealer);
-            res.json(dealer);
+            res.render('pg-home', {title: "Car Dealer"});
         })
         .catch(err => {
             console.log(err);
