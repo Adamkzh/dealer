@@ -2,21 +2,20 @@ $(function() {
 
     $(document).on("click", "#homeLoginBtn", function(e){
         e.preventDefault();
-
-        var userId = $("#userId").val();
-        var userPwd = $("#password").val();
+        let userId = $("#userId").val();
+        let userPwd = $("#password").val();
+        let accountType = $("#accountType").val();
         if(!userId || !userPwd || userId === "" || userPwd === "") {
-            showDialog("User name and password cannot be empty");
+            showDialog("User name and/or password cannot be empty");
             return;
         }
         $.ajax({
             method: "POST",
             url: "/login",
-            data: { "id": userId, "password": userPwd }
+            data: { "id": userId, "password": userPwd, "accountType": accountType }
         })
         .done(function(result) {
             // reload current url
-            console.log(result);
             location.reload();
         })
         .fail(function(result) {

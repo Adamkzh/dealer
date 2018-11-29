@@ -24,7 +24,6 @@ module.exports.postLogin = function(req, res, next) {
             //persist user to session
             req.session.user = dealer;
             res.status(200);
-            console.log(dealer);
             res.json(dealer);
         })
         .catch(err => {

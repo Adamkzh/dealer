@@ -53,27 +53,39 @@
         </div>
         <div class="col-lg-3 dm-home-right-panel">
             <!-- login panel -->
-            <div class="row">
-                <form class="dm-home-login-form" id="homeLoginForm">
-                    <div class="form-group mt-4">
-                        <input type="text" class="form-control" id="userId"  placeholder="Enter Username">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <div>
-                    <table class="table2" style="width:100%" >
-                        <tr>
-                        <th> <button id="homeLoginBtn" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5">
-                                Login</button></th>
-                        <th><a id="homeSignUpBtn" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
-                               href="/register">Sign Up</a></th>
-                    </table>
-                    <br>
-                    <br>
-                    </div>
-                </form>
-            </div>
+            <% if (!userInfo.IndividualID && !userInfo.DealerId) { %>
+                <div class="row">
+                    <form class="dm-home-login-form" id="homeLoginForm">
+                        <div class="form-group mt-4">
+                            <label class="control-label"  for="userId">User ID: </label>
+                            <input type="text" class="form-control" id="userId"  placeholder="Enter user ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"  for="password">Password: </label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">User Type: </label>
+                            <br />
+                            <select id="accountType">
+                                <option value="individual">Individual</option>
+                                <option value="dealer">Dealer</option>
+                            </select>
+                        </div>
+                        <div>
+                        <table class="table2" style="width:100%" >
+                            <tr>
+                            <th> <button id="homeLoginBtn" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5">
+                                    Login</button></th>
+                            <th><a id="homeSignUpBtn" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
+                                   href="/register">Sign Up</a></th>
+                        </table>
+                        <br>
+                        <br>
+                        </div>
+                    </form>
+                </div>
+            <% } %>
         </div>
 
     </div>
@@ -224,7 +236,11 @@
 <div class="bg-image2"></div>
 <hr>
 <br>
-<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
+<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software
+    only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal
+    representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
+<!-- libraries -->
+<% include ./lib-url.ejs %>
 <script type="text/javascript" src="/scripts/pg-home.js"></script>
 </body>
 

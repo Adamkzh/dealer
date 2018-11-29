@@ -5,6 +5,7 @@ let ctlIndividual = require('../controller/ctl-individual');
 let ctlDealer = require('../controller/ctl-dealer');
 let ctlCar = require('../controller/ctl-car');
 let ctlTransaction = require('../controller/ctl-transaction');
+let ctlLogout = require('../controller/ctl-logout');
 
 
 router.get('/', function (req, res, next) {
@@ -18,13 +19,16 @@ router.post('/register-dealer', ctlDealer.postRegister);
 router.post('/register-individual', ctlIndividual.postRegister);
 
 router.post('/login', function(req, res, next) {
-    let userType = req.body.type;
-    if (userType === "individual") {
+    let accountType = req.body.accountType;
+    console.log(req.body);
+    if (accountType === "individual") {
         return ctlIndividual.postLogin(req, res, next);
     } else {
         return ctlDealer.postLogin(req, res, next);
     }
 });
+
+router.get('/logout', ctlLogout.getLogout);
 
 router.get('/search', ctlCar.getSearch);
 

@@ -13,7 +13,7 @@ module.exports.postLogin = function(req, res, next) {
     }
     individualServices.getIndividualById(id)
         .then(individual => {
-            if (!individual.individualID) {
+            if (!individual.IndividualID) {
                 res.status(404);
                 res.json({error: "User does not exist"});
             }
