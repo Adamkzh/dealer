@@ -96,131 +96,36 @@
 <br>
 <br>
 <h2>Cars On Sale!</h2>
-<table class="table1">
+
+<table class="table-fill">
+  <thead>
   <tr>
     <th>Car ID</th>
     <th>Manufacture</th>
     <th>Model and Year</th>
     <th>Price Quote</th>
   </tr>
-  <tr>
-    <td>1</td>
-    <td>Dolphin, common</td>
-    <td>Quest 1999</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Slender loris</td>
-    <td>RX-8</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Common goldeneye</td>
-    <td>Escalade EXT</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>  </tr>
-  <tr>
-    <td>4</td>
-    <td>Screamer, crested</td>
-    <td>G-Class 2005</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>  </tr>
-  <tr>
-    <td>5</td>
-    <td>White-faced</td>
-    <td>944 1998</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>Caracara</td>
-    <td>Regal 1998</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>Cockatoo, red-breasted</td>
-    <td>Legacy 1990</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>Pheasant, ring-necked</td>
-    <td>G-Series 1995</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>9</td>
-    <td>Buttermilk snake</td>
-    <td>SVX 1992</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>Hartebeest, red</td>
-    <td>Space 1992</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
+  </thead>
+  <tbody class="table-hover">
+  
+  <% let start = 0 %>
+  <% for(var i = start; i < start + 20; ++i) {%>
     <tr>
-    <td>11</td>
-    <td>Dolphin, common</td>
-    <td>Quest 1999</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>12</td>
-    <td>Slender loris</td>
-    <td>RX-8</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>13</td>
-    <td>Common goldeneye</td>
-    <td>Escalade EXT</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>14</td>
-    <td>Screamer, crested</td>
-    <td>G-Class 2005</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>15</td>
-    <td>White-faced</td>
-    <td>944 1998</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>16</td>
-    <td>Caracara</td>
-    <td>Regal 1998</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>17</td>
-    <td>Cockatoo, red-breasted</td>
-    <td>Legacy 1990</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>18</td>
-    <td>Pheasant, ring-necked</td>
-    <td>G-Series 1995</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>19</td>
-    <td>Buttermilk snake</td>
-    <td>SVX 1992</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
-  <tr>
-    <td>20</td>
-    <td>Hartebeest, red</td>
-    <td>Space 1992</td>
-    <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
-  </tr>
+      <td><%=postedCars[i].CarID%></td>
+      <td> <%=postedCars[i].Manufacture%></td>
+      <td> <%=postedCars[i].Model%>, <%=postedCars[i].Year%></td>
+      <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
+    </tr>
+  <% } %>
+  </tbody>
 </table>
+<button onclick="decreaseStart">previous</button>
+<button onclick="increaseStart">next</button>
+
+<div>
+  
+</div>
+
 <br>
 <br>
 <br>
@@ -242,6 +147,19 @@
 <!-- libraries -->
 <% include ./lib-url.ejs %>
 <script type="text/javascript" src="/scripts/pg-home.js"></script>
+<script type="text/javascript">
+    let start = 0;
+    function increaseStart(){
+      start += 20;
+    }
+    function decreaseStart(){
+      start -= 20;
+    }
+    function getStart(){
+      return start;
+    }
+
+</script>
 </body>
 
 
