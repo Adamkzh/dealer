@@ -4,44 +4,114 @@
     <% include ./meta-resources.ejs %>
     <link rel='stylesheet' href='/stylesheets/signup.css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <meta charset="utf-8">
+     <style>
+	body, html {
+	  height: 100%;
+	  margin: 0;
+	  font-family: Arial, Helvetica, sans-serif;
+	}
+
+	* {
+	  box-sizing: border-box;
+	}
+
+	.bg-image2 {
+	  /* The image used */
+	  background-image: url("/images/home/policy.png");
+	  
+	  /* Add the blur effect */
+	  filter: blur(0px);
+	  -webkit-filter: blur(0px);
+	  
+	  /* Full height */
+	  height: 40%; 
+	  /* Center and scale the image nicely */
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	}
+
+	.bg-image {
+	  /* The image used */
+	  background-image: url("/images/home/background.jpg");
+	  
+	  /* Add the blur effect */
+	  filter: blur(8px);
+	  -webkit-filter: blur(8px);
+	  
+	  /* Full height */
+	  height: 100%; 
+	  
+	  /* Center and scale the image nicely */
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	}
+
+	/* Position text in the middle of the page/image */
+	.bg-text {
+	  background-color: rgb(0,0,0); /* Fallback color */
+	  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+	  color: white;
+	  font-weight: bold;
+	  border: 3px solid #f1f1f1;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  z-index: 2;
+	  width: 80%;
+	  padding: 20px;
+	  text-align: center;
+	}
+</style>
 </head>
 <body>
     <% include ./body-nav.ejs %>
-
+    <div class="bg-image"></div>
+    <div class="bg-text">
+	  <h1 style="font-size:50px">Update / Delete</h1>
+	  <p>Please fill out the car info below, then click the button</p>
+	</div>
+	<br><br><br><br>
+	<hr>
     <div class="dm-signup container mt-4">
         <div class="row">
-
             <div class="col-lg-5 container">
                 <form class="form-horizontal mt-5" id="signupForm" action='/register' method="POST">
                     <fieldset>
                         <div class="form-group">
-                            <!-- LastName -->
-                            <label class="control-label"  for="carID">Car ID:</label>
+                            <!-- CarID -->
+                           <label class="control-label"  for="carID">Car ID:</label>
                             <input type="text" id="editCarID" name="editCarID" placeholder="ex. 3， 95" class="form-control" minlength=1 maxlength=12 required >
                             <small class="form-text text-muted">Car ID cannot be empty</small>
                         </div>
 
                         <div class="form-group">
-                            <!-- FirstName -->
+                            <!-- Manufacturer -->
                             <label class="control-label" for="manufacture">Manufacturer:</label>
                             <input type="text" id="inputManufacture" name="manufacture" placeholder="ex. Jaguar, Jeep" class="form-control" required>
-                            <small class="form-text text-muted">Enter the car  manufacturer</small>
+                            <small class="form-text text-muted">Enter the manufacturer of the car</small>
                         </div>
 
                         <div class="form-group">
-                            <!-- UserName -->
+                            <!-- Model -->
                             <label class="control-label" for="model">Model:</label>
                             <input type="text" id="inputModel" name="model" placeholder="ex. F-Pace, XF" class="form-control" required>
-                            <small class="form-text text-muted">Enter the car model with case sensitive</small>
+                            <small class="form-text text-muted">Enter the model of the car with case sensitive</small>
                         </div>
 
                         <div class="form-group">
-                            <!-- Password-->
+                            <!-- Year-->
                             <label class="control-label" for="year">Year:</label>
                             <input type="text" id="inputYear" name="year" placeholder="ex. 2015 2018" class="form-control" minlength=4 maxlength=4 required>
                             <small class="form-text text-muted">Enter the year of your car</small>
                         </div>
-                        
+
                         <div class="form-group">
                         	<div>
 							   <small class="form-text text-muted">User Type? </small>
@@ -59,15 +129,15 @@
             </div>
         </div>
     </div>
-
-<div id="dialog" title="Dish Master">
-    <p id="dialogMsg"></p>
-</div>
+<br>
+<br>
+<hr>
+<br>
 <!-- libraries -->
 <% include ./lib-url.ejs %>
 <script type="text/javascript" src="/scripts/pg-signup.js"></script>
 </body>
-<br><br><br><br><br>
+<br><br><br><br>
 <div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
 
 </html>
