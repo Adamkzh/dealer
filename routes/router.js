@@ -7,15 +7,6 @@ let ctlCar = require('../controller/ctl-car');
 let ctlTransaction = require('../controller/ctl-transaction');
 let ctlLogout = require('../controller/ctl-logout');
 
-
-let servIndividual = require('../services/individual-services');
-let servDealer = require('../services/dealer-services');
-let servCar = require('../services/cars-services');
-let servTransaction = require('../services/transaction-services');
-let servService = require('../services/service-services');
-
-
-
 router.get('/', ctlCar.getSearch);
 
 router.get('/register', function(req, res, next) {
@@ -40,130 +31,15 @@ router.get('/getAllDealers', ctlDealer.getAllDealer);
 
 router.post('/addTransaction', ctlTransaction.addTransaction);
 
-
-
 router.get('/getDealerToIndividualTransaction', ctlTransaction.getDealerToIndividualTransaction);
-
-router.get('/getIndividualToDealerTransaction', function(req, res, next) {
-	
-	servTransaction.getIndividualToDealerTransaction()
-	.then((result) => {
-            //console.log(result);
-			res.json(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-	
-	
-});
-
-router.get('/getIndividualToIndividualTransaction', function(req, res, next) {
-	
-	servTransaction.getIndividualToIndividualTransaction()
-	.then((result) => {
-            //console.log(result);
-			res.json(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-	
-	
-});
-
-
+router.get('/getIndividualToDealerTransaction', ctlTransaction.getIndividualToDealerTransaction);
+router.get('/getIndividualToIndividualTransaction', ctlTransaction.getIndividualToIndividualTransaction);
 // Done: get inserted id
-router.get('/addDealerToIndividualTransaction', function(req, res, next) {
-	
-	console.log(req.query);
-	//console.log(res);
-	//console.log(next);
-	
-	servTransaction.addTransaction(convertToDateTime(new Date()), req.query["price"])
-	.then((result) => {
-            //console.log(result);
-			var resultOne = result;
-			
-			servTransaction.addDealerToIndividualTransaction(req.query["dealerID"], result["insertId"],req.query["individualID"], req.query["carID"])
-			.then((result) => {
-					//console.log(result);
-					res.json({resultOne, result});
-				})
-				.catch(err => {
-					console.log(err);
-				});;
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-		
-	
-
-});
-
-
+router.post('/addDealerToIndividualTransaction', ctlTransaction.addDealerToIndividualTransaction);
 // Done: testing
-router.get('/addIndividualToDealerTransaction', function(req, res, next) {
-	
-	servTransaction.addTransaction(convertToDateTime(new Date()), req.query["price"])
-	.then((result) => {
-            //console.log(result);
-			var resultOne = result;
-			
-			servTransaction.addIndividualToDealerTransaction(req.query["dealerID"],result["insertId"], req.query["individualID"],req.query["carID"])
-			.then((result) => {
-					//console.log(result);
-					res.json({resultOne, result});
-				})
-				.catch(err => {
-					console.log(err);
-				});;
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-	
-
-	
-	
-});
-
+router.post('/addIndividualToDealerTransaction', ctlTransaction.addIndividualToDealerTransaction);
 // Done: testing
-router.get('/addIndividualToIndividualTransaction', function(req, res, next) {
-	
-	servTransaction.addTransaction(convertToDateTime(new Date()), req.query["price"])
-	.then((result) => {
-            //console.log(result);
-			var resultOne = result;
-			
-			servTransaction.addIndividualToIndividualTransaction(req.query["individualIDOne"],result["insertId"],req.query["individualIDTwo"],req.query["carID"])
-			.then((result) => {
-					//console.log(result);
-					res.json({resultOne, result});
-				})
-				.catch(err => {
-					console.log(err);
-				});;
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-	
-
-	
-	
-});
-
-
-
-
-
-// Done: test out transaction service 
-
-// TODO: display car list to the front end
-
-
+router.post('/addIndividualToIndividualTransaction', ctlTransaction.addIndividualToIndividualTransaction);
 
 router.get('/profile', function(req, res, next) {
     res.render('pg-profile', {title: "Profile"});

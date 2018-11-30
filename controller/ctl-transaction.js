@@ -33,6 +33,92 @@ module.exports.getDealerToIndividualTransaction = function(req, res, next) {
         });
 };
 
+module.exports.getIndividualToDealerTransaction = function(req, res, next) {
+    transactionServices.getIndividualToDealerTransaction()
+        .then((result) => {
+            //console.log(result);
+            res.json(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+module.exports.getIndividualToIndividualTransaction = function(req, res, next) {
+    transactionServices.getIndividualToIndividualTransaction()
+        .then((result) => {
+            //console.log(result);
+            res.json(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+module.exports.addDealerToIndividualTransaction = function(req, res, next) {
+    console.log(req.query);
+    //console.log(res);
+    //console.log(next);
+    transactionServices.addTransaction(convertToDateTime(new Date()), req.query["price"])
+        .then((result) => {
+            //console.log(result);
+            var resultOne = result;
+
+            transactionServices.addDealerToIndividualTransaction(req.query["dealerID"], result["insertId"],
+                req.query["individualID"], req.query["carID"])
+                .then((result) => {
+                    //console.log(result);
+                    res.json({resultOne, result});
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+module.exports.addIndividualToDealerTransaction = function(req, res, next) {
+    transactionServices.addTransaction(convertToDateTime(new Date()), req.query["price"])
+        .then((result) => {
+            //console.log(result);
+            var resultOne = result;
+            transactionServices.addIndividualToDealerTransaction(req.query["dealerID"],result["insertId"],
+                req.query["individualID"],req.query["carID"])
+                .then((result) => {
+                    //console.log(result);
+                    res.json({resultOne, result});
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+module.exports.addIndividualToIndividualTransaction = function(req, res, next) {
+    transactionServices.addTransaction(convertToDateTime(new Date()), req.query["price"])
+        .then((result) => {
+            //console.log(result);
+            var resultOne = result;
+            transactionServices.addIndividualToIndividualTransaction(req.query["individualIDOne"],result["insertId"],
+                req.query["individualIDTwo"],req.query["carID"])
+                .then((result) => {
+                    //console.log(result);
+                    res.json({resultOne, result});
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 function convertToDateTime( date) {
     return date.toISOString().slice(0, 19).replace('T', ' ');
 }
