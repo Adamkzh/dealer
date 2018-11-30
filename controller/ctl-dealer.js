@@ -58,3 +58,14 @@ module.exports.postRegister = function(req, res, next) {
             res.json({error: "registration failed"});
         });
 };
+
+module.exports.getAllDealer = function(req, res, next) {
+    servDealer.getAllDealer()
+        .then((result) => {
+            //console.log(result);
+            res.json(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};

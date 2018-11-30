@@ -36,35 +36,7 @@ router.post('/login', function(req, res, next) {
 
 router.get('/logout', ctlLogout.getLogout);
 
-router.get('/search', function(req, res, next) {
-	
-	servCar.getAllCars()
-	.then((result) => {
-            //console.log(result);
-			res.json(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-		
-
-});
-
-router.get('/getAllDealers', function(req, res, next) {
-	
-	servDealer.getAllDealer()
-	.then((result) => {
-            //console.log(result);
-			res.json(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-	
-	
-});
-
-
+router.get('/getAllDealers', ctlDealer.getAllDealer);
 
 router.post('/addTransaction', function(req, res, next) {
 	
