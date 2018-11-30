@@ -15,7 +15,6 @@ module.exports.getSearch = function(req, res, next) {
 
 module.exports.getSearchWithOffset = function(req, res, next) {
     let start = parseInt(req.params.start);
-    console.log(typeof start);
     let postedCars = [];
     carServices.getAllCars()
         .then((result) => {
