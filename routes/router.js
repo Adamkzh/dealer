@@ -86,6 +86,49 @@ function convertToDateTime( date) {
 }
 
 
+router.get('/getDealerToIndividualTransaction', function(req, res, next) {
+	
+	servTransaction.getDealerToIndividualTransaction()
+	.then((result) => {
+            //console.log(result);
+			res.json(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });;
+	
+	
+});
+
+router.get('/getIndividualToDealerTransaction', function(req, res, next) {
+	
+	servTransaction.getIndividualToDealerTransaction()
+	.then((result) => {
+            //console.log(result);
+			res.json(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });;
+	
+	
+});
+
+router.get('/getIndividualToIndividualTransaction', function(req, res, next) {
+	
+	servTransaction.getIndividualToIndividualTransaction()
+	.then((result) => {
+            //console.log(result);
+			res.json(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });;
+	
+	
+});
+
+
 // Done: get inserted id
 router.get('/addDealerToIndividualTransaction', function(req, res, next) {
 	
