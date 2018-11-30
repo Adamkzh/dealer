@@ -5,34 +5,83 @@
     <link rel='stylesheet' href='/stylesheets/signup.css' />
     <link rel='stylesheet' href='/stylesheets/register.css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+    .center{
+        margin-left: 740px;
+    }
+    .bg-image2 {
+      /* The image used */
+      background-image: url("/images/home/policy.png");
+      
+      /* Add the blur effect */
+      filter: blur(0px);
+      -webkit-filter: blur(0px);
+      
+      /* Full height */
+      height: 40%; 
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .bg-image {
+      /* The image used */
+      background-image: url("/images/home/background.jpg");
+      
+      /* Add the blur effect */
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
+      
+      /* Full height */
+      height: 100%; 
+      
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Position text in the middle of the page/image */
+    .bg-text {
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+      color: white;
+      font-weight: bold;
+      border: 3px solid #f1f1f1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 80%;
+      padding: 20px;
+      text-align: center;
+    }
+</style>
 </head>
 <body>
     <% include ./body-nav.ejs %>
-    <hr>
-    <div class="dm-header container mt-5">
-        <div class="row">
-            <div class="col-lg-3 dm-header-logo-wrapper">
-                <a href="#" class="">
-                    <img class="dm-header-logo" src="/images/register/logo@2x.png" height="62" width="62">
-                </a>
-            </div>
-            <div class="col-lg-6 dm-header-text-wrapper">
-                <h1 class="dm-header-text">New User Registration</h1>
-            </div>
-            <div class="col-lg-3">
-                <div class="dm-header-location-wrapper">
-                    <span><img src="/images/register/logo@2x.png" height="62" width="62"></span>
-                    <span class="align-middle">SAN JOSE</span>
-                </div>
-            </div>
-        </div>
+    <div class="bg-image"></div>
+    <div class="bg-text">
+      <h2>Create a FREE Account</h2>
+      <h1 style="font-size:50px">Sign Up Page</h1>
+      <p>And Then You Can Post Your Car For Sale or Buy Cars with Lowest Price!</p>
     </div>
+    <br><br>
     <hr>
+<div class="center">
     <div class="dm-signup container mt-4">
         <div class="row">
-            <div class="col-lg-7 dm-signup-image">
-                <img class="signup" src="/images/register/signup.png">
-            </div>
             <div id="registerTabs">
                 <ul>
                     <li><a href="#register-dealer">Dealer</a></li>
@@ -46,22 +95,14 @@
                 </div>
             </div>
             <div class="col-lg-5 container">
-                <table>
-                	<tr>
-				    <td>&nbsp;&nbsp;<button class="social-signin facebook">Log in with facebook</button></td>
-				  	</tr>
-				  	<tr>
-				    <td>&nbsp;&nbsp;<button class="social-signin twitter">Log in with Twitter</button></td>
-				  	</tr>
-				  	<tr>
-				    <td>&nbsp;&nbsp;<button class="social-signin google">Log in with Google+</button></td>
-				  	</tr>
-                </table>
             </div>
         </div>
     </div>
-<br>
-<br>
+</div>
+<br><br>
+<hr>
+<div class="bg-image2"></div>
+<br><br><hr>
 <br>
 <div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software
     only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal
