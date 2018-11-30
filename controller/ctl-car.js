@@ -6,7 +6,20 @@ module.exports.getSearch = function(req, res, next) {
     carServices.getAllCars()
         .then((result) => {
             postedCars = result;
-            res.render('pg-home', {title: "Car Dealer", postedCars: postedCars});
+            res.render('pg-home', {title: "Car Dealer", postedCars: postedCars, start: 0, prev: 0});
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+module.exports.getSearchWithOffset = function(req, res, next) {
+    let start = parseInt(req.params.start);
+    let postedCars = [];
+    carServices.getAllCars()
+        .then((result) => {
+            postedCars = result;
+            res.render('pg-home', {title: "Car Dealer", postedCars: postedCars, start: start, prev: start - 20});
         })
         .catch(err => {
             console.log(err);
