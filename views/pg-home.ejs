@@ -104,6 +104,7 @@
     <th>Manufacture</th>
     <th>Model and Year</th>
     <th>Price Quote</th>
+    <th>Status</th>
   </tr>
   </thead>
   <tbody class="table-hover">
@@ -114,14 +115,16 @@
       <td><%=postedCars[i].CarID%></td>
       <td> <%=postedCars[i].Manufacture%></td>
       <td> <%=postedCars[i].Model%>, <%=postedCars[i].Year%></td>
+      <td> <%=postedCars[i].price%></td>
       <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
     </tr>
   <% } %>
   </tbody>
 </table>
-<button onclick="decreaseStart">previous</button>
-<button onclick="increaseStart">next</button>
-
+<ul class="pager">
+    <li class="previous"><a href="#">Previous</a></li>
+    <li class="next"><a href="#">Next</a></li>
+  </ul>
 <div>
   
 </div>
