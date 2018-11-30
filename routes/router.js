@@ -54,4 +54,8 @@ router.get('/edit-post', function(req, res, next) {
         });
 });
 
+router.get('/edit', function (req, res, next) {
+    res.render('editPost', {title: "Edit Your Post"});
+});
+
 module.exports = router;
