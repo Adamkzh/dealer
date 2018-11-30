@@ -47,5 +47,4 @@ $(function() {
         $("#dialogMsg").text(msg);
         $("#dialog").dialog("open");
     }
-
 });

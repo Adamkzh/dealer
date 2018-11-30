@@ -102,23 +102,24 @@
   <tr>
     <th>Car ID</th>
     <th>Manufacture</th>
-    <th>Model and Year</th>
+    <th>Model</th>
+    <th>Year</th>
     <th>Price Quote</th>
-    <th>Status</th>
+    <th>Option</th>
   </tr>
   </thead>
   <tbody class="table-hover">
-  
-  <% let start = 0 %>
-  <% for(var i = start; i < start + 20; ++i) {%>
+  <% for(var i = start; i < start + 20; i++) {%>
     <tr>
       <td><%=postedCars[i].CarID%></td>
-      <td> <%=postedCars[i].Manufacture%></td>
-      <td> <%=postedCars[i].Model%>, <%=postedCars[i].Year%></td>
-      <td> <%=postedCars[i].price%></td>
+      <td><%=postedCars[i].Manufacture%></td>
+      <td><%=postedCars[i].Model%></td>
+      <td><%=postedCars[i].Year%></td>
+      <td><%=postedCars[i].price%></td>
       <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
     </tr>
   <% } %>
+  <% start += 20 %>
   </tbody>
 </table>
 <div>
@@ -129,8 +130,8 @@
 <br>
 <br>
 <div align="center">
-<a href="#" class="previous round">&#8249;</a>
-<a href="#" class="next round">&#8250;</a>
+<a href="/<%= prev %>" class="previous round">&#8249;</a>
+<a href="/<%= start %>" class="next round">&#8250;</a>
 </div>
 <br>
 <br>
@@ -146,19 +147,6 @@
 <!-- libraries -->
 <% include ./lib-url.ejs %>
 <script type="text/javascript" src="/scripts/pg-home.js"></script>
-<script type="text/javascript">
-    let start = 0;
-    function increaseStart(){
-      start += 20;
-    }
-    function decreaseStart(){
-      start -= 20;
-    }
-    function getStart(){
-      return start;
-    }
-
-</script>
 </body>
 
 
