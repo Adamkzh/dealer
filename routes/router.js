@@ -38,39 +38,11 @@ router.get('/logout', ctlLogout.getLogout);
 
 router.get('/getAllDealers', ctlDealer.getAllDealer);
 
-router.post('/addTransaction', function(req, res, next) {
-	
-	servTransaction.addTransaction(convertToDateTime(new Date()), 10000)
-	.then((result) => {
-            //console.log(result);
-			res.json(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-	
-	
-});
+router.post('/addTransaction', ctlTransaction.addTransaction);
 
 
-function convertToDateTime( date) {
-	return date.toISOString().slice(0, 19).replace('T', ' ');
-}
 
-
-router.get('/getDealerToIndividualTransaction', function(req, res, next) {
-	
-	servTransaction.getDealerToIndividualTransaction()
-	.then((result) => {
-            //console.log(result);
-			res.json(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });;
-	
-	
-});
+router.get('/getDealerToIndividualTransaction', ctlTransaction.getDealerToIndividualTransaction);
 
 router.get('/getIndividualToDealerTransaction', function(req, res, next) {
 	
