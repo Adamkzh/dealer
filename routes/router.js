@@ -15,9 +15,8 @@ let servTransaction = require('../services/transaction-services');
 let servService = require('../services/service-services');
 
 
-router.get('/', function (req, res, next) {
-    res.render('pg-home', {title: "Car Dealer"});
-});
+
+router.get('/', ctlCar.getSearch);
 
 router.get('/register', function(req, res, next) {
     res.render('pg-register', {title: "Register"});
