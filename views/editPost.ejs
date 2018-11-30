@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./meta-resources.ejs %>
+    <link rel='stylesheet' href='/stylesheets/signup.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <% include ./body-nav.ejs %>
+
+    <div class="dm-signup container mt-4">
+        <div class="row">
+
+            <div class="col-lg-5 container">
+                <form class="form-horizontal mt-5" id="signupForm" action='/register' method="POST">
+                    <fieldset>
+                        <div class="form-group">
+                            <!-- LastName -->
+                            <label class="control-label"  for="carID">Car ID:</label>
+                            <input type="text" id="editCarID" name="editCarID" placeholder="ex. 3， 95" class="form-control" minlength=1 maxlength=12 required >
+                            <small class="form-text text-muted">Car ID cannot be empty</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- FirstName -->
+                            <label class="control-label" for="manufacture">Manufacturer:</label>
+                            <input type="text" id="inputManufacture" name="manufacture" placeholder="ex. Jaguar, Jeep" class="form-control" required>
+                            <small class="form-text text-muted">Enter the car  manufacturer</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- UserName -->
+                            <label class="control-label" for="model">Model:</label>
+                            <input type="text" id="inputModel" name="model" placeholder="ex. F-Pace, XF" class="form-control" required>
+                            <small class="form-text text-muted">Enter the car model with case sensitive</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Password-->
+                            <label class="control-label" for="year">Year:</label>
+                            <input type="text" id="inputYear" name="year" placeholder="ex. 2015 2018" class="form-control" minlength=4 maxlength=4 required>
+                            <small class="form-text text-muted">Enter the year of your car</small>
+                        </div>
+                        
+                        <div class="form-group">
+                        	<div>
+							   <small class="form-text text-muted">User Type? </small>
+							   <br />
+							  <select name="type">
+								  <option value="individual">Individual</option>
+								  <option value="dealer">Dealer</option>
+								</select>
+  							</div>
+                        </div>
+                        <button id="update" name ="update" class="btn dm-btn-success">Update </button>
+                        <button id="delete" name ="delete" class="btn dm-btn-success">Delete </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<div id="dialog" title="Dish Master">
+    <p id="dialogMsg"></p>
+</div>
+<!-- libraries -->
+<% include ./lib-url.ejs %>
+<script type="text/javascript" src="/scripts/pg-signup.js"></script>
+</body>
+<br><br><br><br><br>
+<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
+
+</html>
+
+</html>
