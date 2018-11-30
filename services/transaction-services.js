@@ -18,7 +18,7 @@ module.exports.getTransactionById = function(tId) {
     });
 };
 
-// TODO: need to test out the function if works correctly
+// Done: need to test out the function if works correctly			
 module.exports.addDealerToIndividualTransaction = function(dealerId, transactionId, IndividualID, carID) {
     return new Promise((resolve, reject) => {
         let queryStrOne =
@@ -34,49 +34,55 @@ module.exports.addDealerToIndividualTransaction = function(dealerId, transaction
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
-        });
-		
-		let queryStrTwo = 
-			'insert into individual_buy_involve (TransactionID, IndividualID) values ?';
 			
-		let valuesTwo = [
-			[transactionId, IndividualID]
-		];
-		
-		dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result[0])));
-        });
-		
-		
-		let queryStrThree = 
-			'insert into car_involve (TransactionID, CarID) values ?';
 			
-		let valuesThree = [
-			[transactionId, carID]
-		];
-		
-		dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+            var resultQueryOne = result;
+			
+			let queryStrTwo = 
+				'insert into individual_buy_involve (TransactionID, IndividualID) values ?';
+			
+			let valuesTwo = [
+				[transactionId, IndividualID]
+			];
+			
+			dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
+				if (err) {
+					reject(err);
+					return;
+				}
+				if (result.length === 0) {
+					result.push({});
+				}
+				
+				var resultQueryTwo = result;
+				
+				let queryStrThree = 
+					'insert into car_involve (TransactionID, CarID) values ?';
+					
+				let valuesThree = [
+					[transactionId, carID]
+				];
+				
+				dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
+					if (err) {
+						reject(err);
+						return;
+					}
+					if (result.length === 0) {
+						result.push({});
+					}
+					
+					var resultQueryThree = result;
+					var totalResult = JSON.parse(JSON.stringify({resultQueryOne,resultQueryTwo,resultQueryThree}));
+					resolve(totalResult);
+				});
+			});
         });
+		
     });
 };
 
-// TODO: need to test out the function if works correctly
+// Done: need to test out the function if works correctly
 module.exports.addIndividualToDealerTransaction = function(dealerId, transactionId, individualID, carID) {
     return new Promise((resolve, reject) => {
         let queryStrOne =
@@ -92,49 +98,57 @@ module.exports.addIndividualToDealerTransaction = function(dealerId, transaction
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
-        });
-		
-		let queryStrTwo = 
-			'insert into dealer_buy_involve (DealerID, TransactionID) values ?';
+            
+			var resultOne = result;
 			
-		let valuesTwo = [
-			[dealerId, transactionId]
-		];
-		
-		dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result[0])));
-        });
-		
-		let queryStrThree = 
-			'insert into car_involve (TransactionID, CarID) values ?';
+			let queryStrTwo = 
+				'insert into dealer_buy_involve (DealerID, TransactionID) values ?';
+				
+			let valuesTwo = [
+				[dealerId, transactionId]
+			];
 			
-		let valuesThree = [
-			[transactionId, carID]
-		];
-		
-		dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+			dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
+				if (err) {
+					reject(err);
+					return;
+				}
+				if (result.length === 0) {
+					result.push({});
+				}
+				
+				resultTwo = result;
+				
+				let queryStrThree = 
+					'insert into car_involve (TransactionID, CarID) values ?';
+					
+				let valuesThree = [
+					[transactionId, carID]
+				];
+				
+				dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
+					if (err) {
+						reject(err);
+						return;
+					}
+					if (result.length === 0) {
+						result.push({});
+					}
+					
+					totalResult = JSON.parse(JSON.stringify({resultOne, resultTwo, result}));					
+					resolve(totalResult);
+					
+				});
+			});
         });
+		
+
+	
     });
 };
 
-// TODO: individual to individual transactions
-module.exports.addIndividualToIndividualTransaction = function(individualSellerID, transactionId, individualBuyerID) {
+// Done: individual to individual transactions
+module.exports.addIndividualToIndividualTransaction = function(individualSellerID, transactionId, individualBuyerID, carID) {
     return new Promise((resolve, reject) => {
         let queryStrOne =
             'insert into individual_sell_involve (IndividualID, TransactionID) values ?';
@@ -149,44 +163,52 @@ module.exports.addIndividualToIndividualTransaction = function(individualSellerI
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
-        });
-		
-		let queryStrTwo = 
-			'insert into individual_buy_involve (IndividualID, TransactionID) values ?';
+            
+			resultOne = result;
 			
-		let valuesTwo = [
-			[individualBuyerID, transactionId]
-		];
-		
-		dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result[0])));
-        });
-		
-		let queryStrThree = 
-			'insert into car_involve (TransactionID, CarID) values ?';
+			let queryStrTwo = 
+				'insert into individual_buy_involve (IndividualID, TransactionID) values ?';
+				
+			let valuesTwo = [
+				[individualBuyerID, transactionId]
+			];
 			
-		let valuesThree = [
-			[transactionId, carID]
-		];
-		
-		dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+			dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
+				if (err) {
+					reject(err);
+					return;
+				}
+				if (result.length === 0) {
+					result.push({});
+				}
+				
+				resultTwo = result;
+				
+				let queryStrThree = 
+					'insert into car_involve (TransactionID, CarID) values ?';
+					
+				let valuesThree = [
+					[transactionId, carID]
+				];
+				
+				dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
+					if (err) {
+						reject(err);
+						return;
+					}
+					if (result.length === 0) {
+						result.push({});
+					}
+					
+					resultTotal = JSON.parse(JSON.stringify({resultOne, resultTwo, result}));
+					resolve(resultTotal);
+				});
+			});
         });
+		
+
+		
+
     });
 };
 
@@ -207,7 +229,7 @@ module.exports.addTransaction = function(dateTime, Price) {
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+            resolve(JSON.parse(JSON.stringify(result)));
         });
     });
 };

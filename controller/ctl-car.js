@@ -1,9 +1,11 @@
 let carServices = require('../services/cars-services');
 
-module.exports.getSearch = function(req, res, next) {
+module.exports.getSearch = function(callback) {
     carServices.getAllCars()
         .then((result) => {
             console.log(result);
+			callback(result);
+			//res.json({1:1, 2:2});
         })
         .catch(err => {
             console.log(err);
