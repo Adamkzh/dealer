@@ -206,8 +206,8 @@
                     )">Buy</button></td>
     </tr>
     <script>
-        function makeTransactionWithIndividual(carId, dealerId, price, buyerId, accountType) {
-            console.log(carId, dealerId, price, buyerId, accountType);
+        function makeTransactionWithIndividual(carId, individualId, price, buyerId, accountType) {
+            console.log(carId, individualId, price, buyerId, accountType);
             if (accountType === 0) { // visitor
                 alert("please log in first!");
                 return;
@@ -216,7 +216,7 @@
             x.innerHTML = "Bought";
             x.disable = true;
             $.post(accountType === 1 ? "/addIndividualToDealerTransaction" : "/addIndividualToIndividualTransaction",
-                {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
+                {carId: carId, buyerId: buyerId, price: price, individualId: individualId}
             )
             .done(function (result) {
                 // reload current url

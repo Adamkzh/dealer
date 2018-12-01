@@ -272,16 +272,12 @@ module.exports.addIndividualToIndividualTransaction = function(individualSellerI
             if (result.length === 0) {
                 result.push({});
             }
-            
-			resultOne = result;
-			
+			let resultOne = result;
 			let queryStrTwo = 
 				'insert into individual_buy_involve (IndividualID, TransactionID) values ?';
-				
 			let valuesTwo = [
 				[individualBuyerID, transactionId]
 			];
-			
 			dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
 				if (err) {
 					reject(err);
@@ -290,16 +286,12 @@ module.exports.addIndividualToIndividualTransaction = function(individualSellerI
 				if (result.length === 0) {
 					result.push({});
 				}
-				
-				resultTwo = result;
-				
+				let resultTwo = result;
 				let queryStrThree = 
 					'insert into car_involve (TransactionID, CarID) values ?';
-					
 				let valuesThree = [
 					[transactionId, carID]
 				];
-				
 				dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
 					if (err) {
 						reject(err);
@@ -308,16 +300,39 @@ module.exports.addIndividualToIndividualTransaction = function(individualSellerI
 					if (result.length === 0) {
 						result.push({});
 					}
-					
-					resultTotal = JSON.parse(JSON.stringify({resultOne, resultTwo, result}));
-					resolve(resultTotal);
+					let resultThree = result;
+					let queryStrFour =
+                        'delete from individual_owns where IndividualID = ?';
+                    dbUtil.query(queryStrFour, [individualSellerID], function(err, result, fields) {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+                        if (result.length === 0) {
+                            result.push({});
+                        }
+                        let resultFour = result;
+                        let queryStrFive =
+                            'insert into individual_owns (IndividualID, CarID) values ?';
+                        let valuesFive = [
+                            [individualBuyerID, carID]
+                        ];
+                        dbUtil.query(queryStrFive, [valuesFive], function(err, result, fields) {
+                            if (err) {
+                                reject(err);
+                                return;
+                            }
+                            if (result.length === 0) {
+                                result.push({});
+                            }
+                            let resultTotal = JSON.parse(JSON.stringify({resultOne, resultTwo, resultThree,
+                                resultFour, result}));
+                            resolve(resultTotal);
+                        });
+                    });
 				});
 			});
         });
-		
-
-		
-
     });
 };
 
