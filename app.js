@@ -32,6 +32,7 @@ app.use(session({
 }));
 
 // set data and functions for templates
+// account type: visitor = 0, dealer = 1, individual = 2
 app.use(function(req, res, next) {
     res.locals.userInfo = req.session.user ? req.session.user : {};
     res.locals.accountType = req.session.accountType ? req.session.accountType : 0;

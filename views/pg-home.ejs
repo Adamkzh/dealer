@@ -127,44 +127,32 @@
     <script>
         function makeTransactionWithDealer(carId, dealerId, price, buyerId, accountType) {
             console.log(carId, dealerId, price, buyerId, accountType);
-            if (accountType === 0) {
+            if (accountType === 0) { // visitor
                 alert("please log in first!");
+                return;
+            }
+            if (accountType === 1) { // dealer
+                alert("This app is not designed for dealer-to-dealer transaction");
                 return;
             }
             var x = document.getElementById(carId);
             x.innerHTML = "Bought";
             x.disable = true;
-            if (accountType === 2) {
-                $.post("/addDealerToIndividualTransaction",
-                    { carId: carId, dealerId: dealerId, price: price, individualId: buyerId }
-                )
-                .done(function(result) {
-                    // reload current url
-                    console.log('click success');
-                })
-                .fail(function(result) {
-                    var error = result.responseJSON.error;
-                    if(error) {
-                        console.log(error);
-                        return;
-                    }
-                });
-            } else if (accountType === 1) {
-                $.post("/addIndividualToDealerTransaction",
-                    { id: 1007, password: "111111", accountType: "individual" }
-                )
-                    .done(function(result) {
-                        // reload current url
-                        console.log('click success');
-                    })
-                    .fail(function(result) {
-                        var error = result.responseJSON.error;
-                        if(error) {
-                            console.log(error);
-                            return;
-                        }
-                    });
-            }
+            $.post("/addDealerToIndividualTransaction",
+                { carId: carId, dealerId: dealerId, price: price, individualId: buyerId }
+            )
+            .done(function(result) {
+                // reload current url
+                console.log(result);
+                console.log('click success');
+            })
+            .fail(function(result) {
+                var error = result.responseJSON.error;
+                if(error) {
+                    console.log(error);
+                    return;
+                }
+            });
         }
     </script>
   <% } %>
