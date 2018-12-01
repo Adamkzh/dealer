@@ -11,6 +11,52 @@ module.exports.buyCar = function(req, res, next) {
         });
 };
 
+
+module.exports.getAdminPage = function(req, res, next) {
+    transactionServices.getDealerToIndividualTransaction()
+        .then((result) => {
+            var dealerToIndividualTransaction = result;
+			
+			transactionServices.getIndividualToDealerTransaction()
+					.then((result) => {
+						//console.log(result);
+						
+						var individualToDealerTransaction = result;
+						
+						transactionServices.getIndividualToIndividualTransaction()
+							.then((result) => {
+								//console.log(result);
+								
+								var individualToIndividualTransaction = result;
+								
+								
+								var totalResult = {title: "Admin", dealerToIndividualTransaction: dealerToIndividualTransaction, 
+								individualToDealerTransaction:individualToDealerTransaction, individualToIndividualTransaction: individualToIndividualTransaction,
+								
+								start: 0, prev: 0}
+								
+								//res.json(totalResult);
+								res.render('pg-admin', totalResult);
+							})
+							.catch(err => {
+								console.log(err);
+							});
+							
+							
+
+
+					})
+					.catch(err => {
+						console.log(err);
+					});
+			
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+
 module.exports.addTransaction = function(req, res, next) {
     transactionServices.addTransaction(convertToDateTime(new Date()), 10000)
         .then((result) => {

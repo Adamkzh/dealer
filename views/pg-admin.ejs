@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./meta-resources.ejs %>
+</head>
+
+<body class="light-text-color">
+
+<h1>Admin</h1>
+
+<p>Dealer To Individual Transaction</p>
+<table class="table-fill">
+  <thead>
+  <tr>
+
+    <th>Dealer Name</th>
+    <th>DealerUsername</th>
+    <th>Dealer ID</th>
+    <th>Individual FirstName</th>
+    <th>Individual LastName</th>
+    <th>Individual ID</th>
+    <th>Car ID</th>
+	<th>Manufacture</th>
+    <th>Model</th>
+    <th>Year</th>
+	<th>Transaction ID</th>
+    <th>Date Time</th>
+    <th>Price</th>
+	
+  </tr>
+  </thead>
+  <tbody class="table-hover">
+  <% for(var i = 0; i < dealerToIndividualTransaction.length; i++) {%>
+    <tr>
+      <td><%=dealerToIndividualTransaction[i].DealerName%></td>
+      <td><%=dealerToIndividualTransaction[i].DealerUsername%></td>
+      <td><%=dealerToIndividualTransaction[i].DealerId%></td>
+      <td><%=dealerToIndividualTransaction[i].FirstName%></td>
+      <td><%=dealerToIndividualTransaction[i].LastName%></td>
+	  <td><%=dealerToIndividualTransaction[i].IndividualID%></td>
+	  
+	  <td><%=dealerToIndividualTransaction[i].CarID%></td>
+      <td><%=dealerToIndividualTransaction[i].Manufacture%></td>
+      <td><%=dealerToIndividualTransaction[i].Model%></td>
+      <td><%=dealerToIndividualTransaction[i].Year%></td>
+	  
+      <td><%=dealerToIndividualTransaction[i].TransactionID%></td>
+      <td><%=dealerToIndividualTransaction[i].DateTime%></td>
+      <td><%=dealerToIndividualTransaction[i].Price%></td>
+    </tr>
+  <% } %>
+  </tbody>
+</table>
+
+
+<p>Individual To Dealer Transaction</p>
+<table class="table-fill">
+  <thead>
+  <tr>
+
+    <th>Individual FirstName</th>
+    <th>Individual LastName</th>
+    <th>Individual ID</th>
+	
+    <th>Dealer Name</th>
+    <th>DealerUsername</th>
+    <th>Dealer ID</th>
+
+    <th>Car ID</th>
+	<th>Manufacture</th>
+    <th>Model</th>
+    <th>Year</th>
+	<th>Transaction ID</th>
+    <th>Date Time</th>
+    <th>Price</th>
+	
+  </tr>
+  </thead>
+  <tbody class="table-hover">
+  <% for(var i = 0; i < individualToDealerTransaction.length; i++) {%>
+    <tr>
+      <td><%=individualToDealerTransaction[i].FirstName%></td>
+      <td><%=individualToDealerTransaction[i].LastName%></td>
+	  <td><%=individualToDealerTransaction[i].IndividualID%></td>
+	
+      <td><%=individualToDealerTransaction[i].DealerName%></td>
+      <td><%=individualToDealerTransaction[i].DealerUsername%></td>
+      <td><%=individualToDealerTransaction[i].DealerId%></td>
+	  
+	  <td><%=individualToDealerTransaction[i].CarID%></td>
+      <td><%=individualToDealerTransaction[i].Manufacture%></td>
+      <td><%=individualToDealerTransaction[i].Model%></td>
+      <td><%=individualToDealerTransaction[i].Year%></td>
+	  
+      <td><%=individualToDealerTransaction[i].TransactionID%></td>
+      <td><%=individualToDealerTransaction[i].DateTime%></td>
+      <td><%=individualToDealerTransaction[i].Price%></td>
+    </tr>
+  <% } %>
+  </tbody>
+</table>
+
+
+<p>Individual To Individual Transaction</p>
+<table class="table-fill">
+  <thead>
+  <tr>
+
+    <th>Individual FirstName</th>
+    <th>Individual LastName</th>
+    <th>Individual ID</th>
+	
+    <th>Individual FirstName</th>
+    <th>Individual LastName</th>
+    <th>Individual ID</th>
+
+    <th>Car ID</th>
+	<th>Manufacture</th>
+    <th>Model</th>
+    <th>Year</th>
+	<th>Transaction ID</th>
+    <th>Date Time</th>
+    <th>Price</th>
+	
+  </tr>
+  </thead>
+  <tbody class="table-hover">
+  <% for(var i = 0; i < individualToIndividualTransaction.length; i++) {%>
+    <tr>
+      <td><%=individualToIndividualTransaction[i].FirstName%></td>
+      <td><%=individualToIndividualTransaction[i].LastName%></td>
+	  <td><%=individualToIndividualTransaction[i].IndividualID%></td>
+	
+      <td><%=individualToIndividualTransaction[i].FirstName%></td>
+      <td><%=individualToIndividualTransaction[i].LastName%></td>
+	  <td><%=individualToIndividualTransaction[i].IndividualID%></td>
+	  
+	  <td><%=individualToIndividualTransaction[i].CarID%></td>
+      <td><%=individualToIndividualTransaction[i].Manufacture%></td>
+      <td><%=individualToIndividualTransaction[i].Model%></td>
+      <td><%=individualToIndividualTransaction[i].Year%></td>
+	  
+      <td><%=individualToIndividualTransaction[i].TransactionID%></td>
+      <td><%=individualToIndividualTransaction[i].DateTime%></td>
+      <td><%=individualToIndividualTransaction[i].Price%></td>
+    </tr>
+  <% } %>
+  </tbody>
+</table>
+
+<script type="text/javascript" src="/scripts/pg-admin.js"></script>
+</body>
+<br><br><br><br><br>
+<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
+
+</html>

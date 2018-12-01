@@ -10,6 +10,9 @@ let ctlLogout = require('../controller/ctl-logout');
 router.get('/', ctlCar.getSearch);
 router.get('/home/:start', ctlCar.getSearchWithOffset);
 
+router.get('/admin', ctlTransaction.getAdminPage);
+
+
 router.get('/register', function(req, res, next) {
     res.render('pg-register', {title: "Register"});
 });
@@ -41,6 +44,10 @@ router.post('/addDealerToIndividualTransaction', ctlTransaction.addDealerToIndiv
 router.post('/addIndividualToDealerTransaction', ctlTransaction.addIndividualToDealerTransaction);
 // Done: testing
 router.post('/addIndividualToIndividualTransaction', ctlTransaction.addIndividualToIndividualTransaction);
+
+
+
+
 
 router.get('/profile', function(req, res, next) {
     res.render('pg-profile', {title: "Profile"});

@@ -13,6 +13,8 @@ module.exports.getSearch = function(req, res, next) {
         });
 };
 
+
+
 module.exports.getSearchWithOffset = function(req, res, next) {
     let start = parseInt(req.params.start);
     let postedCars = [];
