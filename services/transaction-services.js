@@ -114,17 +114,12 @@ module.exports.addDealerToIndividualTransaction = function(dealerId, transaction
             if (result.length === 0) {
                 result.push({});
             }
-			
-			
             var resultQueryOne = result;
-			
 			let queryStrTwo = 
 				'insert into individual_buy_involve (TransactionID, IndividualID) values ?';
-			
 			let valuesTwo = [
 				[transactionId, IndividualID]
 			];
-			
 			dbUtil.query(queryStrTwo, [valuesTwo], function(err, result, fields) {
 				if (err) {
 					reject(err);
@@ -133,16 +128,12 @@ module.exports.addDealerToIndividualTransaction = function(dealerId, transaction
 				if (result.length === 0) {
 					result.push({});
 				}
-				
 				var resultQueryTwo = result;
-				
 				let queryStrThree = 
 					'insert into car_involve (TransactionID, CarID) values ?';
-					
 				let valuesThree = [
 					[transactionId, carID]
 				];
-				
 				dbUtil.query(queryStrThree, [valuesThree], function(err, result, fields) {
 					if (err) {
 						reject(err);
@@ -151,14 +142,38 @@ module.exports.addDealerToIndividualTransaction = function(dealerId, transaction
 					if (result.length === 0) {
 						result.push({});
 					}
-					
 					var resultQueryThree = result;
-					var totalResult = JSON.parse(JSON.stringify({resultQueryOne,resultQueryTwo,resultQueryThree}));
-					resolve(totalResult);
+					let queryStrFour = 'delete from dealer_owns where CarId = ?';
+					dbUtil.query(queryStrFour, [carID], function(err, result, fields) {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+                        if (result.length === 0) {
+                            result.push({});
+                        }
+                        let resultQueryFour = result;
+                        let queryStrFive = 'insert into individual_owns (CarID, IndividualID) values ?';
+                        let valuesFive = [
+                            [carID, IndividualID]
+                        ];
+                        dbUtil.query(queryStrFive, [valuesFive], function(err, result, fields) {
+                            if (err) {
+                                reject(err);
+                                return;
+                            }
+                            if (result.length === 0) {
+                                result.push({});
+                            }
+                            let resultQueryFive = result;
+                            var totalResult = JSON.parse(JSON.stringify({resultQueryOne, resultQueryTwo,
+                                resultQueryThree, resultQueryFour, resultQueryFive}));
+                            resolve(totalResult);
+                        });
+                    });
 				});
 			});
         });
-		
     });
 };
 

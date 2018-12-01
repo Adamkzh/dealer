@@ -19,6 +19,7 @@ module.exports.query = function(sql, options, callback) {
                }
                conn.query(sql, options, function(err, results, fields) {
                    if (err) {
+                       console.log('rollback!');
                        return conn.rollback(function() {
                            throw err;
                        })
