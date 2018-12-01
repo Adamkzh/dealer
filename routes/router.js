@@ -8,7 +8,8 @@ let ctlTransaction = require('../controller/ctl-transaction');
 let ctlLogout = require('../controller/ctl-logout');
 
 router.get('/', ctlCar.getSearch);
-router.get('/home/:start', ctlCar.getSearchWithOffset);
+router.get('/home/dealerCars/:start', ctlCar.getSearchWithDealerOffset);
+router.get('/home/individualCars/:start', ctlCar.getSearchWithIndividualOffset);
 
 router.get('/register', function(req, res, next) {
     res.render('pg-register', {title: "Register"});

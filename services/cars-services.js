@@ -38,10 +38,27 @@ module.exports.getCarById = function(carId) {
 };
 
 
-module.exports.getAllCars = function() {
+module.exports.getAllDealerCars = function() {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'select * from car';
+            'select distinct * from car c join dealer_owns do on c.CarID = do.CarId';
+        dbUtil.query(queryStr, [], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result)));
+        });
+    });
+};
+
+module.exports.getAllIndividualCars = function() {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'select distinct * from car c join individual_owns io on c.CarID = io.CarID';
         dbUtil.query(queryStr, [], function(err, result, fields) {
             if (err) {
                 reject(err);
