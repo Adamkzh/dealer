@@ -109,7 +109,7 @@ module.exports.addDealerToIndividualTransaction = function(req, res, next) {
             var resultOne = result;
 
             transactionServices.addDealerToIndividualTransaction(req.body.dealerId, result["insertId"],
-                req.body.individualId, req.carId)
+                req.body.individualId, req.body.carId)
                 .then((result) => {
                     //console.log(result);
                     res.json({resultOne, result});
@@ -124,12 +124,13 @@ module.exports.addDealerToIndividualTransaction = function(req, res, next) {
 };
 
 module.exports.addIndividualToDealerTransaction = function(req, res, next) {
-    transactionServices.addTransaction(convertToDateTime(new Date()), req.query["price"])
+    console.log(req.body);
+    transactionServices.addTransaction(convertToDateTime(new Date()), req.body.price)
         .then((result) => {
             //console.log(result);
             var resultOne = result;
-            transactionServices.addIndividualToDealerTransaction(req.query["dealerID"],result["insertId"],
-                req.query["individualID"],req.query["carID"])
+            transactionServices.addIndividualToDealerTransaction(req.body.dealerId, result["insertId"],
+                req.body.individualId, req.body.carId)
                 .then((result) => {
                     //console.log(result);
                     res.json({resultOne, result});

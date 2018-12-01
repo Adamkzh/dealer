@@ -118,11 +118,12 @@
       <td><%=dealerCars[i].Price%></td>
       <td><button id="<%= dealerCars[i].CarID%>" type="button" class="button"
                   onclick="makeTransactionWithDealer(
-                  <%= dealerCars[i].CarID %>,
-                  <%= dealerCars[i].DealerId %>,
-                  <%= dealerCars[i].Price %>,
-                  <%= userInfo.IndividualID ? userInfo.IndividualID : (userInfo.DealerId ? userInfo.DealerId : -1)%>,
-                  <%= accountType %>)">Buy</button></td>
+                      <%= dealerCars[i].CarID %>,
+                      <%= dealerCars[i].DealerId %>,
+                      <%= dealerCars[i].Price %>,
+                      <%= userInfo.IndividualID ? userInfo.IndividualID : (userInfo.DealerId ? userInfo.DealerId : -1)%>,
+                      <%= accountType %>
+                  )">Buy</button></td>
     </tr>
     <script>
         function makeTransactionWithDealer(carId, dealerId, price, buyerId, accountType) {
@@ -194,13 +195,59 @@
         <td><%=individualCars[i].Manufacture%></td>
         <td><%=individualCars[i].Model%></td>
         <td><%=individualCars[i].Year%></td>
-        <td><%=individualCars[i].price%></td>
-        <td><button id="<% individualCars[i].CarID%>" type="button" class="button" onclick="makeTransactionWithIndividual()">
-                Buy</button></td>
+        <td><%=individualCars[i].Price%></td>
+        <td><button id="<% individualCars[i].CarID%>" type="button" class="button"
+                    onclick="makeTransactionWithIndividual(
+                        <%= individualCars[i].CarID %>,
+                        <%= individualCars[i].IndividualID %>,
+                        <%= individualCars[i].Price %>,
+                        <%= userInfo.IndividualID ? userInfo.IndividualID : (userInfo.DealerId ? userInfo.DealerId : -1)%>,
+                        <%= accountType %>
+                    )">Buy</button></td>
     </tr>
     <script>
-        function makeTransactionWithIndividual() {
-            var x = document.getElementById("#<%=individualCars[i].CarID%>");
+        function makeTransactionWithIndividual(carId, dealerId, price, buyerId, accountType) {
+            console.log(carId, dealerId, price, buyerId, accountType);
+            if (accountType === 0) { // visitor
+                alert("please log in first!");
+                return;
+            }
+            var x = document.getElementById(carId);
+            x.innerHTML = "Bought";
+            x.disable = true;
+            if (accountType === 1) {
+                $.post("/addIndividualToDealerTransaction",
+                    {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
+                )
+                    .done(function (result) {
+                        // reload current url
+                        console.log(result);
+                        console.log('click success');
+                    })
+                    .fail(function (result) {
+                        var error = result.responseJSON.error;
+                        if (error) {
+                            console.log(error);
+                            return;
+                        }
+                    });
+            } else if (accountType === 2) {
+                $.post("/addIndividualToIndividualTransaction",
+                    {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
+                )
+                    .done(function (result) {
+                        // reload current url
+                        console.log(result);
+                        console.log('click success');
+                    })
+                    .fail(function (result) {
+                        var error = result.responseJSON.error;
+                        if (error) {
+                            console.log(error);
+                            return;
+                        }
+                    });
+            }
         }
     </script>
     <% } %>
