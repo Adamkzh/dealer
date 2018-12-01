@@ -120,34 +120,35 @@
                   onclick="makeTransactionWithDealer(
                   <%= dealerCars[i].CarID %>,
                   <%= dealerCars[i].DealerId %>,
+                  <%= dealerCars[i].Price %>,
                   <%= userInfo.IndividualID ? userInfo.IndividualID : (userInfo.DealerId ? userInfo.DealerId : -1)%>,
                   <%= accountType %>)">Buy</button></td>
     </tr>
     <script>
-        function makeTransactionWithDealer(id, dealerId, buyId, accountType) {
-            console.log(id, dealerId, buyId, accountType);
+        function makeTransactionWithDealer(carId, dealerId, price, buyerId, accountType) {
+            console.log(carId, dealerId, price, buyerId, accountType);
             if (accountType === 0) {
                 alert("please log in first!");
                 return;
             }
-            var x = document.getElementById(id);
+            var x = document.getElementById(carId);
             x.innerHTML = "bought";
             x.disable = true;
             if (accountType === 2) {
                 $.post("/addDealerToIndividualTransaction",
-                    { individualId: buyId, carId: id, dealerId: dealerId }
+                    { carId: carId, dealerId: dealerId, price: price, individualId: buyerId }
                 )
-                    .done(function(result) {
-                        // reload current url
-                        console.log('click success');
-                    })
-                    .fail(function(result) {
-                        var error = result.responseJSON.error;
-                        if(error) {
-                            console.log(error);
-                            return;
-                        }
-                    });
+                .done(function(result) {
+                    // reload current url
+                    console.log('click success');
+                })
+                .fail(function(result) {
+                    var error = result.responseJSON.error;
+                    if(error) {
+                        console.log(error);
+                        return;
+                    }
+                });
             } else if (accountType === 1) {
                 $.post("/addIndividualToDealerTransaction",
                     { id: 1007, password: "111111", accountType: "individual" }

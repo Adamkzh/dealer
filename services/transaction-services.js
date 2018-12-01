@@ -294,11 +294,14 @@ module.exports.addIndividualToIndividualTransaction = function(individualSellerI
 
 // TODO: add car
 
-module.exports.addTransaction = function(dateTime) {
+module.exports.addTransaction = function(dateTime, Price) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'insert into transaction DateTime values ?';
-        dbUtil.query(queryStr, dateTime, function(err, result, fields) {
+            'insert into transaction (DateTime, Price) values ?';
+        let values = [
+            [dateTime, Price]
+        ];
+        dbUtil.query(queryStr, [values], function(err, result, fields) {
             if (err) {
                 reject(err);
                 return;
