@@ -336,7 +336,6 @@ module.exports.addIndividualToIndividualTransaction = function(individualSellerI
     });
 };
 
-// TODO: add car
 
 module.exports.addTransaction = function(dateTime, Price) {
     return new Promise((resolve, reject) => {

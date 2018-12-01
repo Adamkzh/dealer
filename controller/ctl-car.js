@@ -1,6 +1,5 @@
 let carServices = require('../services/cars-services');
 
-
 module.exports.getSearch = function(req, res, next) {
     let dealerCars = [];
     let individualCars = [];
@@ -77,14 +76,26 @@ module.exports.getSearchWithIndividualOffset = function(req, res, next) {
 
 module.exports.postCar = function(req, res, next) {
     let {manufacture, model, year, price, ownerId, accountType} = {...req.body};
-    console.log(manufacture, model, year, price, ownerId, accountType);
-    if (accountType === 1) {
-        carServices.addCar(manufacture, model, year, owner)
+    // console.log(manufacture, model, year, price, ownerId, accountType);
+    if (accountType === '1') {
+        carServices.addCar(manufacture, model, year, parseInt(price))
             .then((result) => {
-                console.log(result);
+                // console.log(result);
+                carServices.addDealerOwn(ownerId, result["insertId"])
+                    .then((result) => {
+                        res.status(200);
+                        res.redirect('/');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(400);
+                        res.json({error: "post failed"});
+                    });
             })
             .catch(err => {
                 console.log(err);
+                res.status(400);
+                res.json({error: "post failed"});
             });
     } else {
 

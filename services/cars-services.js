@@ -72,12 +72,12 @@ module.exports.getAllIndividualCars = function() {
     });
 };
 
-module.exports.addCar = function(manufacture, model, year, owner) {
+module.exports.addCar = function(manufacture, model, year, price) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'insert into car (Manufacture, Model, Year, Owner) values ?';
+            'insert into car (Manufacture, Model, Year, Price) values ?';
         let values = [
-            [manufacture, model, year, owner],
+            [manufacture, model, year, price],
         ];
         dbUtil.query(queryStr, [values], function(err, result, fields) {
             if (err) {
@@ -87,7 +87,27 @@ module.exports.addCar = function(manufacture, model, year, owner) {
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+            resolve(JSON.parse(JSON.stringify(result)));
+        });
+    });
+};
+
+module.exports.addDealerOwn = function(dealerId, carId) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'insert into dealer_owns (DealerId, CarId) values ?';
+        let values = [
+            [dealerId, carId],
+        ];
+        dbUtil.query(queryStr, [values], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result)));
         });
     });
 };
