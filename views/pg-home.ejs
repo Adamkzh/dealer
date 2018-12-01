@@ -215,39 +215,21 @@
             var x = document.getElementById(carId);
             x.innerHTML = "Bought";
             x.disable = true;
-            if (accountType === 1) {// if user is dealer
-                $.post("/addIndividualToDealerTransaction",
-                    {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
-                )
-                    .done(function (result) {
-                        // reload current url
-                        console.log(result);
-                        console.log('click success');
-                    })
-                    .fail(function (result) {
-                        var error = result.responseJSON.error;
-                        if (error) {
-                            console.log(error);
-                            return;
-                        }
-                    });
-            } else if (accountType === 2) {// if user is individual
-                $.post("/addIndividualToIndividualTransaction",
-                    {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
-                )
-                    .done(function (result) {
-                        // reload current url
-                        console.log(result);
-                        console.log('click success');
-                    })
-                    .fail(function (result) {
-                        var error = result.responseJSON.error;
-                        if (error) {
-                            console.log(error);
-                            return;
-                        }
-                    });
-            }
+            $.post(accountType === 1 ? "/addIndividualToDealerTransaction" : "/addIndividualToIndividualTransaction",
+                {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
+            )
+            .done(function (result) {
+                // reload current url
+                console.log(result);
+                console.log('click success');
+            })
+            .fail(function (result) {
+                var error = result.responseJSON.error;
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+            });
         }
     </script>
     <% } %>
