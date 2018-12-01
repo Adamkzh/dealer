@@ -102,14 +102,11 @@ module.exports.getIndividualToIndividualTransaction = function(req, res, next) {
 };
 
 module.exports.addDealerToIndividualTransaction = function(req, res, next) {
-    console.log(req.query);
-    //console.log(res);
-    //console.log(next);
-    transactionServices.addTransaction(convertToDateTime(new Date()), req.query["price"])
+    console.log(req.body);
+    transactionServices.addTransaction(convertToDateTime(new Date()))
         .then((result) => {
             //console.log(result);
             var resultOne = result;
-
             transactionServices.addDealerToIndividualTransaction(req.query["dealerID"], result["insertId"],
                 req.query["individualID"], req.query["carID"])
                 .then((result) => {

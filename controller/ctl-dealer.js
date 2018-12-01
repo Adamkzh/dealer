@@ -23,6 +23,7 @@ module.exports.postLogin = function(req, res, next) {
             }
             //persist user to session
             req.session.user = dealer;
+            req.session.accountType = 1;
             res.status(200);
             res.json(dealer);
         })

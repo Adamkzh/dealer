@@ -13,7 +13,6 @@ module.exports.query = function(sql, options, callback) {
         if (err) {
             callback(err, null, null);
         } else {
-            console.log('before begin trans');
             conn.beginTransaction(function(err) {
                if (err) {
                    throw err;

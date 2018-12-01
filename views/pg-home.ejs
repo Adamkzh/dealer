@@ -115,31 +115,55 @@
       <td><%=dealerCars[i].Manufacture%></td>
       <td><%=dealerCars[i].Model%></td>
       <td><%=dealerCars[i].Year%></td>
-      <td><%=dealerCars[i].price%></td>
+      <td><%=dealerCars[i].Price%></td>
       <td><button id="<%= dealerCars[i].CarID%>" type="button" class="button"
-                  onclick="makeTransaction1(<%= dealerCars[i].CarID%>)">Buy</button></td>
+                  onclick="makeTransactionWithDealer(
+                  <%= dealerCars[i].CarID %>,
+                  <%= dealerCars[i].DealerId %>,
+                  <%= userInfo.IndividualID ? userInfo.IndividualID : (userInfo.DealerId ? userInfo.DealerId : -1)%>,
+                  <%= accountType %>)">Buy</button></td>
     </tr>
     <script>
-        function makeTransaction1(id) {
-            console.log(id);
+        function makeTransactionWithDealer(id, dealerId, buyId, accountType) {
+            console.log(id, dealerId, buyId, accountType);
+            if (accountType === 0) {
+                alert("please log in first!");
+                return;
+            }
             var x = document.getElementById(id);
             x.innerHTML = "bought";
-            $.ajax({
-                method: "POST",
-                url: "/login",
-                data: { "id": 1007, "password": "1111", "accountType": "individual" }
-            })
-                .done(function(result) {
-                    // reload current url
-                    location.reload();
-                })
-                .fail(function(result) {
-                    var error = result.responseJSON.error;
-                    if(error) {
-                        showDialog(error);
-                        return;
-                    }
-                });
+            x.disable = true;
+            if (accountType === 2) {
+                $.post("/addDealerToIndividualTransaction",
+                    { individualId: buyId, carId: id, dealerId: dealerId }
+                )
+                    .done(function(result) {
+                        // reload current url
+                        console.log('click success');
+                    })
+                    .fail(function(result) {
+                        var error = result.responseJSON.error;
+                        if(error) {
+                            console.log(error);
+                            return;
+                        }
+                    });
+            } else if (accountType === 1) {
+                $.post("/addIndividualToDealerTransaction",
+                    { id: 1007, password: "111111", accountType: "individual" }
+                )
+                    .done(function(result) {
+                        // reload current url
+                        console.log('click success');
+                    })
+                    .fail(function(result) {
+                        var error = result.responseJSON.error;
+                        if(error) {
+                            console.log(error);
+                            return;
+                        }
+                    });
+            }
         }
     </script>
   <% } %>
@@ -182,11 +206,11 @@
         <td><%=individualCars[i].Model%></td>
         <td><%=individualCars[i].Year%></td>
         <td><%=individualCars[i].price%></td>
-        <td><button id="<% individualCars[i].CarID%>" type="button" class="button" onclick="makeTransaction2()">
+        <td><button id="<% individualCars[i].CarID%>" type="button" class="button" onclick="makeTransactionWithIndividual()">
                 Buy</button></td>
     </tr>
     <script>
-        function makeTransaction2() {
+        function makeTransactionWithIndividual() {
             var x = document.getElementById("#<%=individualCars[i].CarID%>");
         }
     </script>
