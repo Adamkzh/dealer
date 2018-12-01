@@ -76,14 +76,19 @@ module.exports.getSearchWithIndividualOffset = function(req, res, next) {
 };
 
 module.exports.postCar = function(req, res, next) {
-    let {manufacture, model, year, owner} = {...req.body};
-    carServices.addCar(manufacture, model, year, owner)
-        .then((result) => {
-            console.log(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    let {manufacture, model, year, price, ownerId, accountType} = {...req.body};
+    console.log(manufacture, model, year, price, ownerId, accountType);
+    if (accountType === 1) {
+        carServices.addCar(manufacture, model, year, owner)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } else {
+
+    }
 };
 
 module.exports.editCar = function(req, res, next) {

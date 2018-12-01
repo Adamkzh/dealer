@@ -1,6 +1,6 @@
 $(function () {
     //write review function
-    var dialog = $("#dialog").dialog({
+    let dialog = $("#dialog").dialog({
         autoOpen: false,
         show: {
             effect: "blind",
@@ -27,4 +27,36 @@ $(function () {
         e.preventDefault();
         dialog.dialog( "open" );
     });
+    let ownerId = $("#ownerId").val();
+    let manufacture = $("#manufacture").val();
+    let model = $("#model").val();
+    let year = $("#year").val();
+    let price = $("#price").val();
+    let form = dialog.find( "form" ).on( "submit", function( event ) {
+        event.preventDefault();
+        addReview();
+    });
+    function addReview() {
+        $.post(
+            "/post-car",
+            {
+                ownerId: ownerId,
+                manufacture: manufacture,
+                model: model,
+                year: year,
+                price: price,
+            }
+        )
+        .done(function(result) {
+            // reload current url
+            location.assign("/");
+        })
+        .fail(function(result) {
+            var error = result.responseJSON.error;
+            if (error) {
+                console.log(error);
+                return;
+            }
+        });
+    }
 });

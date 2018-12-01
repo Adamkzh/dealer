@@ -2,41 +2,54 @@
 <html>
 <head>
     <% include ./meta-resources.ejs %>
-    <link rel='stylesheet' href='/stylesheets/header.css' />
-
+    <link rel='stylesheet' href='/stylesheets/home.css' />
+    <link rel='stylesheet' href='/stylesheets/signup.css' />
+    <link rel='stylesheet' href='/stylesheets/register.css' />
 </head>
 <body>
-    <div class="dm-restaurant-user-action">
-        <button class="btn-sm" id="writeReviewBtn">
-            <img class="material-icons useraction-adjust mr-2" src="/images/writeviewIcon/writeviewIcon1.png"
-                 alt="review">
-        </button>
-    </div>
-    <div id="dialog" title="Post Your Car">
-        <form action="/cars/post" method="POST">
-            <fieldset>
-                <div class="form-group">
-                    <label for="manufacture">Manufacture</label>
-                    <input type="text" name="manufacture" id="manufacture" placeholder="input manufacture"
-                           class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="model">Model</label>
-                    <input type="text" name="model" id="model" placeholder="input model" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="year">Year</label>
-                    <input type="text" name="year" id="year" placeholder="input year" class="form-control" required>
-                </div>
+    <form class="form-horizontal mt-5" id="dealerRegisterForm" action='/post-car' method="POST">
+        <fieldset>
+            <div class="form-group">
+                <!-- Manufacture -->
+                <label class="control-label"  for="manufacture">Manufacture:</label>
+                <input type="text" name="manufacture"
+                       placeholder="input manufacture" class="form-control" required>
+                <small class="form-text text-muted">Manufacture cannot be empty.</small>
+            </div>
 
-                <input type="hidden" name="owner" value="">
-                <input type="submit" class="btn btn-success mt-2" value="Post Car">
-            </fieldset>
-        </form>
-    </div>
+            <div class="form-group">
+                <!-- Model -->
+                <label class="control-label" for="model">Model:</label>
+                <input type="text" name="model" placeholder="input model" class="form-control" required>
+                <small class="form-text text-muted">Model cannot be empty.</small>
+            </div>
+
+            <div class="form-group">
+                <!-- Year-->
+                <label class="control-label" for="year">Year:</label>
+                <input type="text" name="year"
+                       placeholder="input year" class="form-control" minlength=4 required>
+                <small class="form-text text-muted">Year must contain at least 4 characters.</small>
+            </div>
+
+            <div class="form-group">
+                <!-- Price -->
+                <label class="control-label"  for="price">Price:</label>
+                <input type="text" name="price"
+                       placeholder="input price" class="form-control" minlength=1 maxlength=9 required>
+                <small class="form-text text-muted">Price must contain 1 to 9 characters.</small>
+            </div>
+            <input type="hidden" name="ownerId" value="<%= userInfo.IndividualID ?
+                    userInfo.IndividualID : (userInfo.DealerId ? userInfo.DealerId : -1)%>">
+            <input type="hidden" name="accountType" value="<%= accountType %>">
+            <button class="btn dm-btn-success">Post </button>
+            <br>
+            <br>
+            <p>Create and you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+        </fieldset>
+    </form>
 
     <!-- libraries -->
     <% include ./lib-url.ejs %>
-    <script src="/scripts/pg-create-post.js"></script>
 </body>
 </html>
