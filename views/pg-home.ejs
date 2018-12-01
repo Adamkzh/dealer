@@ -196,7 +196,7 @@
         <td><%=individualCars[i].Model%></td>
         <td><%=individualCars[i].Year%></td>
         <td><%=individualCars[i].Price%></td>
-        <td><button id="<% individualCars[i].CarID%>" type="button" class="button"
+        <td><button id="<%= individualCars[i].CarID%>" type="button" class="button"
                     onclick="makeTransactionWithIndividual(
                         <%= individualCars[i].CarID %>,
                         <%= individualCars[i].IndividualID %>,
@@ -215,7 +215,7 @@
             var x = document.getElementById(carId);
             x.innerHTML = "Bought";
             x.disable = true;
-            if (accountType === 1) {
+            if (accountType === 1) {// if user is dealer
                 $.post("/addIndividualToDealerTransaction",
                     {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
                 )
@@ -231,7 +231,7 @@
                             return;
                         }
                     });
-            } else if (accountType === 2) {
+            } else if (accountType === 2) {// if user is individual
                 $.post("/addIndividualToIndividualTransaction",
                     {carId: carId, dealerId: dealerId, price: price, individualId: buyerId}
                 )
