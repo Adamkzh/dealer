@@ -19,7 +19,6 @@ router.post('/register-individual', ctlIndividual.postRegister);
 
 router.post('/login', function(req, res, next) {
     let accountType = req.body.accountType;
-    console.log(req.body);
     if (accountType === "individual") {
         return ctlIndividual.postLogin(req, res, next);
     } else {

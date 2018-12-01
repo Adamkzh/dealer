@@ -116,13 +116,30 @@
       <td><%=dealerCars[i].Model%></td>
       <td><%=dealerCars[i].Year%></td>
       <td><%=dealerCars[i].price%></td>
-      <td><button id="<% dealerCars[i].CarID%>" type="button" class="button" onclick="makeTransaction()">
-              Buy</button></td>
+      <td><button id="<%= dealerCars[i].CarID%>" type="button" class="button"
+                  onclick="makeTransaction1(<%= dealerCars[i].CarID%>)">Buy</button></td>
     </tr>
     <script>
-        function makeTransaction() {
-            var x = document.getElementById("#<%=dealerCars[i].CarID%>");
-            console.log("hi");
+        function makeTransaction1(id) {
+            console.log(id);
+            var x = document.getElementById(id);
+            x.innerHTML = "bought";
+            $.ajax({
+                method: "POST",
+                url: "/login",
+                data: { "id": 1007, "password": "1111", "accountType": "individual" }
+            })
+                .done(function(result) {
+                    // reload current url
+                    location.reload();
+                })
+                .fail(function(result) {
+                    var error = result.responseJSON.error;
+                    if(error) {
+                        showDialog(error);
+                        return;
+                    }
+                });
         }
     </script>
   <% } %>
@@ -165,13 +182,12 @@
         <td><%=individualCars[i].Model%></td>
         <td><%=individualCars[i].Year%></td>
         <td><%=individualCars[i].price%></td>
-        <td><button id="<% individualCars[i].CarID%>" type="button" class="button" onclick="makeTransaction()">
+        <td><button id="<% individualCars[i].CarID%>" type="button" class="button" onclick="makeTransaction2()">
                 Buy</button></td>
     </tr>
     <script>
-        function makeTransaction() {
+        function makeTransaction2() {
             var x = document.getElementById("#<%=individualCars[i].CarID%>");
-            console.log("hi");
         }
     </script>
     <% } %>
