@@ -34,6 +34,7 @@ app.use(session({
 // set data and functions for templates
 app.use(function(req, res, next) {
     res.locals.userInfo = req.session.user ? req.session.user : {};
+    res.locals.position = req.session.position ? req.session.position : {};
     next();
 });
 

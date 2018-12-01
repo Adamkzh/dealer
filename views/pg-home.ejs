@@ -95,7 +95,7 @@
 <br>
 <br>
 <br>
-<h2>Cars On Sale!</h2>
+<h2>Cars On Sale From Dealer!</h2>
 
 <table class="table-fill">
   <thead>
@@ -109,17 +109,41 @@
   </tr>
   </thead>
   <tbody class="table-hover">
-  <% for(var i = start; i < start + 20; i++) {%>
+  <% for(var i = position.dStart; i < position.dStart + 5; i++) {%>
     <tr>
-      <td><%=postedCars[i].CarID%></td>
-      <td><%=postedCars[i].Manufacture%></td>
-      <td><%=postedCars[i].Model%></td>
-      <td><%=postedCars[i].Year%></td>
-      <td><%=postedCars[i].price%></td>
-      <td><button type="button" class="button" onclick="alert('Request Sent!')">Buy</button></td>
+      <td><%=dealerCars[i].CarID%></td>
+      <td><%=dealerCars[i].Manufacture%></td>
+      <td><%=dealerCars[i].Model%></td>
+      <td><%=dealerCars[i].Year%></td>
+      <td><%=dealerCars[i].price%></td>
+      <td><button id="<%= dealerCars[i].CarID%>" type="button" class="button"
+                  onclick="makeTransaction1(<%= dealerCars[i].CarID%>)">Buy</button></td>
     </tr>
+    <script>
+        function makeTransaction1(id) {
+            console.log(id);
+            var x = document.getElementById(id);
+            x.innerHTML = "bought";
+            $.ajax({
+                method: "POST",
+                url: "/login",
+                data: { "id": 1007, "password": "1111", "accountType": "individual" }
+            })
+                .done(function(result) {
+                    // reload current url
+                    location.reload();
+                })
+                .fail(function(result) {
+                    var error = result.responseJSON.error;
+                    if(error) {
+                        showDialog(error);
+                        return;
+                    }
+                });
+        }
+    </script>
   <% } %>
-  <% start += 20 %>
+  <% position.dStart += 5 %>
   </tbody>
 </table>
 <div>
@@ -130,12 +154,60 @@
 <br>
 <br>
 <div align="center">
-<a href="/home/<%= prev %>" class="previous round">&#8249;</a>
-<a href="/home/<%= start%>" class="next round">&#8250;</a>
+<a href="/home/dealerCars/<%= position.dPrev %>" class="previous round">&#8249;</a>
+<a href="/home/dealerCars/<%= position.dStart%>" class="next round">&#8250;</a>
 </div>
 <br>
 <br>
 <br>
+
+<h2>Cars On Sale From Individual!</h2>
+
+<table class="table-fill">
+    <thead>
+    <tr>
+        <th>Car ID</th>
+        <th>Manufacture</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Price Quote</th>
+        <th>Option</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <% for(var i = position.iStart; i < position.iStart + 5; i++) {%>
+    <tr>
+        <td><%=individualCars[i].CarID%></td>
+        <td><%=individualCars[i].Manufacture%></td>
+        <td><%=individualCars[i].Model%></td>
+        <td><%=individualCars[i].Year%></td>
+        <td><%=individualCars[i].price%></td>
+        <td><button id="<% individualCars[i].CarID%>" type="button" class="button" onclick="makeTransaction2()">
+                Buy</button></td>
+    </tr>
+    <script>
+        function makeTransaction2() {
+            var x = document.getElementById("#<%=individualCars[i].CarID%>");
+        }
+    </script>
+    <% } %>
+    <% position.iStart += 5 %>
+    </tbody>
+</table>
+<div>
+
+</div>
+
+<br>
+<br>
+<br>
+<div align="center">
+    <a href="/home/individualCars/<%= position.iPrev %>" class="previous round">&#8249;</a>
+    <a href="/home/individualCars/<%= position.iStart%>" class="next round">&#8250;</a>
+</div>
+<br>
+<br>
+
 <br>
 <hr>
 <div class="bg-image2"></div>

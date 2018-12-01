@@ -8,7 +8,8 @@ let ctlTransaction = require('../controller/ctl-transaction');
 let ctlLogout = require('../controller/ctl-logout');
 
 router.get('/', ctlCar.getSearch);
-router.get('/home/:start', ctlCar.getSearchWithOffset);
+router.get('/home/dealerCars/:start', ctlCar.getSearchWithDealerOffset);
+router.get('/home/individualCars/:start', ctlCar.getSearchWithIndividualOffset);
 
 router.get('/admin', ctlTransaction.getAdminPage);
 
@@ -21,7 +22,6 @@ router.post('/register-individual', ctlIndividual.postRegister);
 
 router.post('/login', function(req, res, next) {
     let accountType = req.body.accountType;
-    console.log(req.body);
     if (accountType === "individual") {
         return ctlIndividual.postLogin(req, res, next);
     } else {
