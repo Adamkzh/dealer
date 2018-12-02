@@ -26,6 +26,7 @@
 	<th>Transaction ID</th>
     <th>Date Time</th>
     <th>Price</th>
+	<th></th>
 	
   </tr>
   </thead>
@@ -47,6 +48,7 @@
       <td><%=dealerToIndividualTransaction[i].TransactionID%></td>
       <td><%=dealerToIndividualTransaction[i].DateTime%></td>
       <td><%=dealerToIndividualTransaction[i].Price%></td>
+	  <td><button onclick="handleDelete(event)">Delete</button></td>
     </tr>
   <% } %>
   </tbody>
@@ -73,6 +75,7 @@
 	<th>Transaction ID</th>
     <th>Date Time</th>
     <th>Price</th>
+	<th></th>
 	
   </tr>
   </thead>
@@ -95,6 +98,7 @@
       <td><%=individualToDealerTransaction[i].TransactionID%></td>
       <td><%=individualToDealerTransaction[i].DateTime%></td>
       <td><%=individualToDealerTransaction[i].Price%></td>
+	  <td><button>Delete</button></td>
     </tr>
   <% } %>
   </tbody>
@@ -121,6 +125,7 @@
 	<th>Transaction ID</th>
     <th>Date Time</th>
     <th>Price</th>
+	<th></th>
 	
   </tr>
   </thead>
@@ -143,6 +148,7 @@
       <td><%=individualToIndividualTransaction[i].TransactionID%></td>
       <td><%=individualToIndividualTransaction[i].DateTime%></td>
       <td><%=individualToIndividualTransaction[i].Price%></td>
+	  <td><button onclick="handleDelete">Delete</button></td>
     </tr>
   <% } %>
   </tbody>
