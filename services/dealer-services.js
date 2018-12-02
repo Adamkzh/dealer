@@ -131,3 +131,54 @@ module.exports.deleteDealerById = function(dealerId) {
         });
     });
 };
+
+module.exports.getDealerPostedCar = function(dealerId) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'select * from dealer_owns do join car c on do.CarID = c.CarID ' +
+            'where do.DealerId = ?';
+        dbUtil.query(queryStr, dealerId, function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            // console.log(result);
+            resolve(JSON.parse(JSON.stringify(result)));
+        });
+    });
+};
+
+module.exports.getDealerTransaction = function(dealerId) {
+    return new Promise((resolve, reject) => {
+        let queryStrOne =
+            'select * from dealer_buy_involve dbi join transaction t on dbi.TransactionID = t.TransactionID' +
+            ' where dbi.DealerID = ?';
+        dbUtil.query(queryStrOne, dealerId, function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            let buyInvolve = result;
+            let queryStrTwo =
+                'select * from dealer_sell_involve dsi join transaction t on dsi.TransactionID = t.TransactionID' +
+                ' where dsi.DealerID = ?';
+            dbUtil.query(queryStrTwo, dealerId, function(err, result, fields) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                if (result.length === 0) {
+                    result.push({});
+                }
+                result = buyInvolve.concat(result);
+                resolve(JSON.parse(JSON.stringify(result)));
+            });
+        });
+    });
+};

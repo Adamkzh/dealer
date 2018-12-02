@@ -105,13 +105,12 @@ module.exports.testEncryption = function(req, res, next) {
 
 module.exports.getIndividualPostedCarAndTransaction = function(req, res, next) {
     let postedCars = [];
-    let transactions = [];
     individualServices.getIndividualPostedCar(res.locals.userInfo.IndividualID)
         .then(result => {
             postedCars = result;
             individualServices.getIndividualTransaction(res.locals.userInfo.IndividualID)
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
                     res.render('pg-profile',
                         {title: "Profile", postedCars: postedCars, transactions: result});
                 })

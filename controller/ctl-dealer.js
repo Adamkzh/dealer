@@ -70,3 +70,27 @@ module.exports.getAllDealer = function(req, res, next) {
             console.log(err);
         });
 };
+
+module.exports.getDealerPostedCarAndTransaction = function(req, res, next) {
+    let postedCars = [];
+    dealerServices.getDealerPostedCar(res.locals.userInfo.DealerId)
+        .then(result => {
+            postedCars = result;
+            dealerServices.getDealerTransaction(res.locals.userInfo.DealerId)
+                .then(result => {
+                    // console.log(result);
+                    res.render('pg-profile',
+                        {title: "Profile", postedCars: postedCars, transactions: result});
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(400);
+                    res.json({error: "get dealer transaction failed"});
+                });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400);
+            res.json({error: "get dealer posted cars failed"});
+        });
+};

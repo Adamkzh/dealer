@@ -58,7 +58,7 @@ router.get('/profile', function(req, res, next) {
     if (res.locals.accountType === 2) {
         return ctlIndividual.getIndividualPostedCarAndTransaction(req, res, next);
     } else {
-        return;
+        return ctlDealer.getDealerPostedCarAndTransaction(req, res, next);
     }
 });
 
