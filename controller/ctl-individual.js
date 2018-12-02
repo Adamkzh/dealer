@@ -2,12 +2,13 @@ let individualServices = require('../services/individual-services');
 
 module.exports.postLogin = function(req, res, next) {
     let id = req.body.id;
-    let pwd = req.body.password;
+	var username = req.body.username;
+    let password = req.body.password;
     if(!id || id.length === 0) {
         res.json({error: "id cannot be empty"});
         return;
     }
-    if(!pwd || pwd.length === 0) {
+    if(!password || password.length === 0) {
         res.json({error: "password cannot be empty"});
         return;
     }
@@ -17,15 +18,39 @@ module.exports.postLogin = function(req, res, next) {
                 res.status(404);
                 res.json({error: "User does not exist"});
             }
-            if (individual.Password !== pwd) {
-                res.status(404);
-                res.json({error: "ID and password does not match"});
-            }
-            //persist user to session
-            req.session.user = individual;
-            req.session.accountType = 2;
-            res.status(200);
-            res.json(individual);
+			
+			
+			//TODO: verify password when log-on using encryption
+			//individual.Salt, individual.Hash
+
+			const bcrypt = require('bcrypt');
+			bcrypt.compare(password, individual.Hash, function(err, resBcrypt) {
+				// resBcrypt == true
+				
+				if (resBcrypt == true)
+				{
+					//persist user to session
+					req.session.user = individual;
+					req.session.accountType = 2;
+					res.status(200);
+					res.json(individual);
+					console.log("password matching!");
+					console.log("log in successful!");
+					console.log(password);
+					console.log(individual.Hash);
+				}
+				else
+				{
+					res.status(400);
+					res.json({error: "password not matching :("});
+					console.log("password not matching :(");
+					console.log(password);
+					console.log(individual.Hash);
+				}
+				
+			});
+			
+
         })
         .catch(err => {
             console.log(err);
@@ -34,8 +59,12 @@ module.exports.postLogin = function(req, res, next) {
         });
 };
 
+
+
 module.exports.postRegister = function(req, res, next) {
-    let {lastName, firstName, password} = {...req.body};
+	console.log(req.body);
+	//console.log(req.query);
+    let {lastName, firstName, username, password} = {...req.body};
     if(!lastName || lastName.length === 0) {
         res.json({error: "last name cannot be empty"});
         return;
@@ -48,10 +77,11 @@ module.exports.postRegister = function(req, res, next) {
         res.json({error: "password cannot be empty"});
         return;
     }
-    individualServices.addIndividualAccount(firstName, lastName, password)
+    individualServices.addIndividual(firstName, lastName, username, password)
         .then(individual => {
             res.status(200);
             console.log(individual);
+			console.log("individual register success!");
             res.redirect('/');
         })
         .catch(err => {
@@ -60,3 +90,17 @@ module.exports.postRegister = function(req, res, next) {
             res.json({error: "individual account registration failed"});
         });
 };
+
+module.exports.testEncryption = function(req, res, next) {
+
+    individualServices.testEncryption('')
+        .then(individual => {
+			res.json({});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400);
+            res.json({error: "individual account registration failed"});
+        });
+};
+

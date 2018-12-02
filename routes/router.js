@@ -20,6 +20,11 @@ router.get('/register', function(req, res, next) {
 router.post('/register-dealer', ctlDealer.postRegister);
 router.post('/register-individual', ctlIndividual.postRegister);
 
+
+router.post('/testEncryption', ctlIndividual.testEncryption);
+
+
+
 router.post('/login', function(req, res, next) {
     let accountType = req.body.accountType;
     if (accountType === "individual") {

@@ -36,6 +36,8 @@ module.exports.getIndividualByFirstAndLast = function(firstName, lastName) {
     });
 };
 
+// TODO: get individual by username 
+
 module.exports.addIndividualCar = function(individualId, carId) {
     return new Promise((resolve, reject) => {
         let queryStr =
@@ -53,25 +55,84 @@ module.exports.addIndividualCar = function(individualId, carId) {
     });
 };
 
-module.exports.addIndividualAccount = function(firstName, lastName, password) {
+module.exports.addIndividual = function(firstName, lastName, username, password) {
     return new Promise((resolve, reject) => {
-        let queryStr =
-            'insert into individual (LastName, FirstName, Password) values ?';
-        let values = [
-            [lastName, firstName, password],
-        ];
-        dbUtil.query(queryStr, [values], function(err, result, fields) {
-            if (err) {
-                reject(err);
-                return;
-            }
-            if (result.length === 0) {
-                result.push({});
-            }
-            resolve(JSON.parse(JSON.stringify(result)));
-        });
+		
+		function callback (retJson) {
+			let queryStr =
+				'insert into individual (LastName, FirstName, Password, Salt, Hash, Username) values ?';
+			let values = [
+				[lastName, firstName, password, retJson["salt"], retJson["hash"], username]
+			];
+			dbUtil.query(queryStr, [values], function(err, result, fields) {
+				if (err) {
+					reject(err);
+					return;
+				}
+				if (result.length === 0) {
+					result.push({});
+				}
+				resolve(JSON.parse(JSON.stringify(result)));
+			});
+		}
+		
+		encryptPassword(password, callback);
+		
+        
     });
 };
+
+
+function encryptPassword (password, callback) {
+	
+	const bcrypt = require('bcrypt');
+	const saltRounds = 10;
+	const myPlaintextPassword = password;
+	
+	bcrypt.genSalt(saltRounds, function(err, salt) {
+		console.log(salt);
+		
+		bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+			// Store hash in your password DB.
+			
+			console.log(hash)
+			console.log('\n')
+			
+			callback({"salt":salt, "hash": hash});
+		});
+	});
+
+};
+
+
+module.exports.testEncryption = function(password) {
+    return new Promise((resolve, reject) => {
+		
+		
+		const bcrypt = require('bcrypt');
+		const saltRounds = 10;
+		const myPlaintextPassword = 's0/\/\P4$$w0rD';
+		const someOtherPlaintextPassword = 'not_bacon';
+		
+		bcrypt.genSalt(saltRounds, function(err, salt) {
+			console.log(salt);
+			
+			bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+				// Store hash in your password DB.
+				
+				console.log(hash)
+				
+				
+				
+				console.log('\n')
+			});
+		});
+
+    });
+};
+
+
+
 
 module.exports.updateIndividualAccount = function(id, firstName, lastName, password) {
     return new Promise((resolve, reject) => {
@@ -109,3 +170,6 @@ module.exports.deleteIndividualAccountById = function(id) {
         });
     });
 };
+
+
+
