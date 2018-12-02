@@ -152,14 +152,12 @@ module.exports.updateCarOwner = function(carId, owner) {
     });
 };
 
-module.exports.updateCar = function(carId, manufacture, model, year, owner) {
+module.exports.updateCar = function(carId, manufacture, model, year, price) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'update car set Manufacture = ?, Model = ?, Year = ?, Owner = ? where CarID = ?';
-        let values = [
-            [manufacture, model, year, owner, carId],
-        ];
-        dbUtil.query(queryStr, [values], function(err, result, fields) {
+            `update car set Manufacture = "${manufacture}", Model = "${model}", Year = "${year}", 
+            Price = ${parseInt(price)} where CarID = ${parseInt(carId)}`;
+        dbUtil.query(queryStr, [], function(err, result, fields) {
             if (err) {
                 reject(err);
                 return;
@@ -167,7 +165,8 @@ module.exports.updateCar = function(carId, manufacture, model, year, owner) {
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result[0])));
+            // console.log(result);
+            resolve(JSON.parse(JSON.stringify(result)));
         });
     });
 };

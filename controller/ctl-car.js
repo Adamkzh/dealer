@@ -121,13 +121,17 @@ module.exports.postCar = function(req, res, next) {
 };
 
 module.exports.editCar = function(req, res, next) {
-    let {carId, manufacture, model, year, owner} = {...req.body};
-    carServices.updateCarOwner(carId, manufacture, model, year, owner)
+    let {carId, manufacture, model, year, price} = {...req.body};
+    carServices.updateCar(parseInt(carId), manufacture, model, year, price)
         .then((result) => {
             console.log(result);
+            res.status(200);
+            res.redirect('/profile');
         })
         .catch(err => {
             console.log(err);
+            res.status(400);
+            res.json({error: "update car failed"});
         });
 };
 
@@ -135,7 +139,7 @@ module.exports.getCarById = function (req, res, next) {
     let carId = req.params.carId;
     carServices.getCarById(carId)
         .then(result => {
-            console.log(result);
+            // console.log(result);
             res.render('pg-edit-post', {title: "Edit Your Post", car: result});
         })
         .catch(err => {

@@ -22,12 +22,14 @@
     <div class="dm-signup container mt-4" align="center">
         <div class="row">
             <div class="col-lg-5 container">
-                <form class="form-horizontal mt-5" id="signupForm" action='/register' method="POST">
+                <form class="form-horizontal mt-5" id="signupForm" action='/edit-post' method="POST">
                     <fieldset>
                         <div class="form-group">
                             <!-- CarID -->
-                           <label class="control-label"  for="carID">Car ID:</label>
-                            <input disabled type="text" name="editCarID" value="<%= car.CarID %>"
+                            <label class="control-label"  for="carID">Car ID:</label>
+                            <input disabled type="text" value="<%= car.CarID %>"
+                                   class="form-control">
+                            <input hidden type="text" name="carId" value="<%= car.CarID %>"
                                    class="form-control">
                         </div>
                         <div class="form-group">
@@ -61,8 +63,10 @@
                                    class="form-control" required>
                             <small class="form-text text-muted">Enter the Price of the car</small>
                         </div>
-                        <button id="update" name ="update" class="btn dm-btn-success">Update </button>
-                        <button id="delete" name ="delete" class="btn dm-btn-success">Delete </button>
+                        <button class="btn dm-btn-success">Update </button>
+                        <button class="btn dm-btn-success">
+                            <a href="/profile">Cancel </a>
+                        </button>
                     </fieldset>
                 </form>
             </div>

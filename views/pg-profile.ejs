@@ -41,10 +41,11 @@
                     <tr>
                         <td><%= car.CarID %></td>
                         <td><%= car.Manufacture %></td>
+                        <td><%= car.Model %></td>
                         <td><%= car.Year %></td>
                         <td><%= car.Price %></td>
                         <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
-                               href="/edit-post/<%= car.CarID %>">Edit / Delete</a></td>
+                               href="/edit-post/<%= car.CarID %>">Edit</a></td>
                     </tr>
                     <% } %>
                 <% });%>

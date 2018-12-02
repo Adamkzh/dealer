@@ -71,5 +71,6 @@ router.post('/post-car', ctlCar.postCar);
 router.post('/buy-car', ctlTransaction.buyCar);
 
 router.get('/edit-post/:carId', ctlCar.getCarById);
+router.post('/edit-post', ctlCar.editCar);
 
 module.exports = router;
