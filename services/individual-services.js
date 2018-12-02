@@ -206,7 +206,39 @@ module.exports.getIndividualPostedCar = function(individualId) {
             resolve(JSON.parse(JSON.stringify(result)));
         });
     });
-}
+};
+
+module.exports.getIndividualTransaction = function(individualId) {
+    return new Promise((resolve, reject) => {
+        let queryStrOne =
+            'select * from individual_buy_involve ibi join transaction t on ibi.TransactionID = t.TransactionID' +
+            ' where ibi.IndividualID = ?';
+        dbUtil.query(queryStrOne, individualId, function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            let buyInvolve = result;
+            let queryStrTwo =
+                'select * from individual_sell_involve isi join transaction t on isi.TransactionID = t.TransactionID' +
+                ' where isi.IndividualID = ?';
+            dbUtil.query(queryStrTwo, individualId, function(err, result, fields) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                if (result.length === 0) {
+                    result.push({});
+                }
+                result = buyInvolve.concat(result);
+                resolve(JSON.parse(JSON.stringify(result)));
+            });
+        });
+    });
+};
 
 
 

@@ -37,6 +37,7 @@
                     <th></th>
                 </tr>
                 <% postedCars.forEach(function(car) { %>
+                    <% if (car.CarID) { %>
                     <tr>
                         <td><%= car.CarID %></td>
                         <td><%= car.Manufacture %></td>
@@ -45,6 +46,7 @@
                         <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
                                href="/edit">Edit / Delete</a></td>
                     </tr>
+                    <% } %>
                 <% });%>
             </table>
         </div>
@@ -52,41 +54,22 @@
             <h3>Transactions In Progress</h3>
             <table class="table1">
                 <tr>
-                    <th>Car ID</th>
-                    <th>Manufacture</th>
-                    <th>Model and Year</th>
+                    <th>Transaction ID</th>
+                    <th>DateTime</th>
+                    <th>Price</th>
                     <th></th>
                 </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Hartebeest</td>
-                    <td>Regal 1998</td>
-                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Slender loris</td>
-                    <td>RX-8 1999</td>
-                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Audi</td>
-                    <td>A7 2015</td>
-                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>Benz</td>
-                    <td>G-Class 2005</td>
-                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td>BMW</td>
-                    <td>328i 1998</td>
-                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-                </tr>
+                <% transactions.forEach(function(transaction) { %>
+                    <% if (transaction.TransactionID) { %>
+                    <tr>
+                        <td><%= transaction.TransactionID %></td>
+                        <td><%= transaction.DateTime %></td>
+                        <td><%= transaction.Price %></td>
+                        <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
+                               href="/edit">Edit / Delete</a></td>
+                    </tr>
+                    <% } %>
+                <% });%>
             </table>
         </div>
 

@@ -103,11 +103,23 @@ module.exports.testEncryption = function(req, res, next) {
         });
 };
 
-module.exports.getIndividualPostedCar = function(req, res, next) {
+module.exports.getIndividualPostedCarAndTransaction = function(req, res, next) {
+    let postedCars = [];
+    let transactions = [];
     individualServices.getIndividualPostedCar(res.locals.userInfo.IndividualID)
         .then(result => {
-            console.log(result);
-            res.render('pg-profile', {title: "Profile", postedCars: result});
+            postedCars = result;
+            individualServices.getIndividualTransaction(res.locals.userInfo.IndividualID)
+                .then(result => {
+                    console.log(result);
+                    res.render('pg-profile',
+                        {title: "Profile", postedCars: postedCars, transactions: result});
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(400);
+                    res.json({error: "get individual transaction failed"});
+                });
         })
         .catch(err => {
            console.log(err);
