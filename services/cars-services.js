@@ -58,7 +58,7 @@ module.exports.getAllDealerCars = function() {
 module.exports.getAllIndividualCars = function() {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'select distinct * from car c join individual_owns io on c.CarID = io.CarID';
+            'call getIndividualCar()';
         dbUtil.query(queryStr, [], function(err, result, fields) {
             if (err) {
                 reject(err);
@@ -67,7 +67,7 @@ module.exports.getAllIndividualCars = function() {
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result)));
+            resolve(JSON.parse(JSON.stringify(result[0])));
         });
     });
 };
