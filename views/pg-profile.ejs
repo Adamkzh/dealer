@@ -44,7 +44,7 @@
                         <td><%= car.Year %></td>
                         <td><%= car.Price %></td>
                         <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
-                               href="/edit">Edit / Delete</a></td>
+                               href="/edit-post/<%= car.CarID %>">Edit / Delete</a></td>
                     </tr>
                     <% } %>
                 <% });%>
@@ -65,8 +65,6 @@
                         <td><%= transaction.TransactionID %></td>
                         <td><%= transaction.DateTime %></td>
                         <td><%= transaction.Price %></td>
-                        <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
-                               href="/edit">Edit / Delete</a></td>
                     </tr>
                     <% } %>
                 <% });%>

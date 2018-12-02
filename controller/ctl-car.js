@@ -130,3 +130,18 @@ module.exports.editCar = function(req, res, next) {
             console.log(err);
         });
 };
+
+module.exports.getCarById = function (req, res, next) {
+    let carId = req.params.carId;
+    carServices.getCarById(carId)
+        .then(result => {
+            console.log(result);
+            res.render('pg-edit-post', {title: "Edit Your Post", car: result});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400);
+            res.json({error: "fetch car failed"});
+        })
+
+};

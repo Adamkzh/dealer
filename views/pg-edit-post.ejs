@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./meta-resources.ejs %>
+    <link rel='stylesheet' href='/stylesheets/signup.css' />
+    <link rel='stylesheet' href='/stylesheets/editPost.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+</head>
+<body>
+    <% include ./body-nav.ejs %>
+    <div class="bg-image"></div>
+    <div class="bg-text">
+	  <h1 style="font-size:50px">Update / Delete</h1>
+	  <p>Please fill out the car info below, then click the button</p>
+	</div>
+	<br><br><br><br>
+	<hr>
+    <div class="dm-signup container mt-4" align="center">
+        <div class="row">
+            <div class="col-lg-5 container">
+                <form class="form-horizontal mt-5" id="signupForm" action='/register' method="POST">
+                    <fieldset>
+                        <div class="form-group">
+                            <!-- CarID -->
+                           <label class="control-label"  for="carID">Car ID:</label>
+                            <input disabled type="text" name="editCarID" value="<%= car.CarID %>"
+                                   class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <!-- Manufacturer -->
+                            <label class="control-label" for="manufacture">Manufacturer:</label>
+                            <input type="text" name="manufacture" value="<%= car.Manufacture %>"
+                                   placeholder="e.g. Jaguar, Jeep" class="form-control" required>
+                            <small class="form-text text-muted">Enter the manufacturer of the car</small>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Model -->
+                            <label class="control-label" for="model">Model:</label>
+                            <input type="text" name="model" value="<%= car.Model %>" placeholder="e.g. F-Pace, XF"
+                                   class="form-control" required>
+                            <small class="form-text text-muted">Enter the model of the car with case sensitive</small>
+                        </div>
+                        <div class="form-group">
+                            <!-- Year-->
+                            <label class="control-label" for="year">Year:</label>
+                            <input type="text" name="year" value="<%= car.Year %>"
+                                   placeholder="e.g. 2015 2018"
+                                   class="form-control" minlength=4 maxlength=4 required>
+                            <small class="form-text text-muted">Enter the year of the car</small>
+                        </div>
+                        <div class="form-group">
+                            <!-- Year-->
+                            <label class="control-label" for="year">Price:</label>
+                            <input type="text" name="price" value="<%= car.Price %>"
+                                   placeholder="e.g. 10000 50000"
+                                   class="form-control" required>
+                            <small class="form-text text-muted">Enter the Price of the car</small>
+                        </div>
+                        <button id="update" name ="update" class="btn dm-btn-success">Update </button>
+                        <button id="delete" name ="delete" class="btn dm-btn-success">Delete </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+<br><br><br><br><br><br><br><br>
+<hr>
+<br>
+<!-- libraries -->
+<% include ./lib-url.ejs %>
+<script type="text/javascript" src="/scripts/pg-signup.js"></script>
+</body>
+<div class="bg-image2"></div>
+<br><br><hr><br><br>
+<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software
+    only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal
+    representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
+
+</html>
+
+</html>

@@ -70,18 +70,6 @@ router.post('/post-car', ctlCar.postCar);
 
 router.post('/buy-car', ctlTransaction.buyCar);
 
-router.get('/edit-post', function(req, res, next) {
-    ctlCar.getSearch()
-        .then((result) => {
-            console.log(result);
-        })
-        .catch(err => {
-            console.log(err);
-        });
-});
-
-router.get('/edit', function (req, res, next) {
-    res.render('editPost', {title: "Edit Your Post"});
-});
+router.get('/edit-post/:carId', ctlCar.getCarById);
 
 module.exports = router;
