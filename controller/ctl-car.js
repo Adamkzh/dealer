@@ -98,7 +98,25 @@ module.exports.postCar = function(req, res, next) {
                 res.json({error: "post failed"});
             });
     } else {
-
+        carServices.addCar(manufacture, model, year, parseInt(price))
+            .then((result) => {
+                // console.log(result);
+                carServices.addIndividualOwn(ownerId, result["insertId"])
+                    .then((result) => {
+                        res.status(200);
+                        res.redirect('/');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(400);
+                        res.json({error: "post failed"});
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400);
+                res.json({error: "post failed"});
+            });
     }
 };
 

@@ -112,6 +112,26 @@ module.exports.addDealerOwn = function(dealerId, carId) {
     });
 };
 
+module.exports.addIndividualOwn = function(individualId, carId) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'insert into individual_owns (IndividualID, CarId) values ?';
+        let values = [
+            [individualId, carId],
+        ];
+        dbUtil.query(queryStr, [values], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result)));
+        });
+    });
+};
+
 module.exports.updateCarOwner = function(carId, owner) {
     return new Promise((resolve, reject) => {
         let queryStr =

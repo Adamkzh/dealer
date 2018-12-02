@@ -189,5 +189,24 @@ module.exports.deleteIndividualAccountById = function(id) {
     });
 };
 
+module.exports.getIndividualPostedCar = function(individualId) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'select * from individual_owns io join car c on io.CarID = c.CarID ' +
+            'where io.IndividualID = ?';
+        dbUtil.query(queryStr, individualId, function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            // console.log(result);
+            resolve(JSON.parse(JSON.stringify(result)));
+        });
+    });
+}
+
 
 

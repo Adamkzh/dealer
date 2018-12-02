@@ -103,3 +103,16 @@ module.exports.testEncryption = function(req, res, next) {
         });
 };
 
+module.exports.getIndividualPostedCar = function(req, res, next) {
+    individualServices.getIndividualPostedCar(res.locals.userInfo.IndividualID)
+        .then(result => {
+            console.log(result);
+            res.render('pg-profile', {title: "Profile", postedCars: result});
+        })
+        .catch(err => {
+           console.log(err);
+            res.status(400);
+            res.json({error: "get individual posted cars failed"});
+        });
+};
+

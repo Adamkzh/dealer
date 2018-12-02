@@ -27,81 +27,67 @@
         </ul>
         <div id="tabs-rst-list">
             <h3>Posted Cars</h3>
-  <table class="table1">
-  <tr>
-    <th>Car ID</th>
-    <th>Manufacture</th>
-    <th>Model and Year</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>Dolphin, common</td>
-    <td>Quest 1999</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Edit / Delete</a></td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Slender loris</td>
-    <td>RX-8</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Edit / Delete</a></td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Common goldeneye</td>
-    <td>Escalade EXT</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Edit / Delete</a></td>  </tr>
-  <tr>
-    <td>4</td>
-    <td>Screamer, crested</td>
-    <td>G-Class 2005</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Edit / Delete</a></td>  </tr>
-  <tr>
-    <td>5</td>
-    <td>White-faced</td>
-    <td>944 1998</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Edit / Delete</a></td>
-  </tr>
-</table>
+            <table class="table1">
+                <tr>
+                    <th>Car ID</th>
+                    <th>Manufacture</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                <% postedCars.forEach(function(car) { %>
+                    <tr>
+                        <td><%= car.CarID %></td>
+                        <td><%= car.Manufacture %></td>
+                        <td><%= car.Year %></td>
+                        <td><%= car.Price %></td>
+                        <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"
+                               href="/edit">Edit / Delete</a></td>
+                    </tr>
+                <% });%>
+            </table>
         </div>
         <div id="tabs-followers">
             <h3>Transactions In Progress</h3>
             <table class="table1">
-  <tr>
-    <th>Car ID</th>
-    <th>Manufacture</th>
-    <th>Model and Year</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>Hartebeest</td>
-    <td>Regal 1998</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-  </tr>
-  <tr>
-    <td>11</td>
-    <td>Slender loris</td>
-    <td>RX-8 1999</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-  </tr>
-  <tr>
-    <td>12</td>
-    <td>Audi</td>
-    <td>A7 2015</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>  </tr>
-  <tr>
-    <td>13</td>
-    <td>Benz</td>
-    <td>G-Class 2005</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>  </tr>
-  <tr>
-    <td>14</td>
-    <td>BMW</td>
-    <td>328i 1998</td>
-    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
-  </tr>
-</table>
+                <tr>
+                    <th>Car ID</th>
+                    <th>Manufacture</th>
+                    <th>Model and Year</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Hartebeest</td>
+                    <td>Regal 1998</td>
+                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Slender loris</td>
+                    <td>RX-8 1999</td>
+                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Audi</td>
+                    <td>A7 2015</td>
+                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Benz</td>
+                    <td>G-Class 2005</td>
+                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>BMW</td>
+                    <td>328i 1998</td>
+                    <td><a id="editPostButton" class="dm-home-login-form-btn dm-btn-blue btn btn-primary mt-5"href="/edit">Status</a></td>
+                </tr>
+            </table>
         </div>
 
     </div>
@@ -113,6 +99,8 @@
 <script type="text/javascript" src="/scripts/pg-profile.js"></script>
 </body>
 <br><br><br><br><br>
-<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
+<div class="form-text text-muted">© Copyright 2018 Car Dealer, LLC. Trademark Engine provides information and software
+    only. Car Dealer is not a "lawyer referral service" and does not provide legal advice or participate in any legal
+    representation. Use of Car Dealer is subject to our Terms of Service and Privacy Policy.</div>
 
 </html>

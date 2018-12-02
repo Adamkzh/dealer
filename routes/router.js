@@ -55,7 +55,11 @@ router.post('/addIndividualToIndividualTransaction', ctlTransaction.addIndividua
 
 
 router.get('/profile', function(req, res, next) {
-    res.render('pg-profile', {title: "Profile"});
+    if (res.locals.accountType === 2) {
+        return ctlIndividual.getIndividualPostedCar(req, res, next);
+    } else {
+        return;
+    }
 });
 
 router.get('/post-car', function (req, res, next) {
