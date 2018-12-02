@@ -1,31 +1,45 @@
 let dealerServices = require('../services/dealer-services');
 
 module.exports.postLogin = function(req, res, next) {
-    let id = req.body.id;
+    //let id = req.body.id;
+	var username = req.body.username;
+	console.log(username);
     let pwd = req.body.password;
-    if(!id || id.length === 0) {
-        res.json({error: "id cannot be empty"});
-        return;
-    }
+
+	
     if(!pwd || pwd.length === 0) {
         res.json({error: "password cannot be empty"});
         return;
     }
-    dealerServices.getDealerById(id)
+    dealerServices.getDealerByUsername(username)
         .then(dealer => {
-            if (!dealer.DealerId) {
-                res.status(404);
-                res.json({error: "User does not exist"});
-            }
-            if (dealer.DealerPassword !== pwd) {
-                res.status(404);
-                res.json({error: "ID and password does not match"});
-            }
-            //persist user to session
-            req.session.user = dealer;
-            req.session.accountType = 1;
-            res.status(200);
-            res.json(dealer);
+
+		
+			const bcrypt = require('bcrypt');
+			bcrypt.compare(pwd, dealer.Hash, function(err, resBcrypt) {
+				if (resBcrypt == true)
+				{
+					//persist user to session
+					req.session.user = dealer;
+					req.session.accountType = 1;
+					res.status(200);
+					res.json(dealer);
+					console.log("password matching!");
+					console.log("dealer log in successful!");
+					console.log(pwd);
+					console.log(dealer.Hash);
+				}
+				else
+				{
+					res.status(400);
+					res.json({error: "dealer password not matching :("});
+					console.log("dealer password not matching :(");
+					console.log(pwd);
+					console.log(dealer.Hash);
+				}
+			});
+			
+
         })
         .catch(err => {
             console.log(err);
@@ -59,6 +73,7 @@ module.exports.postRegister = function(req, res, next) {
             res.json({error: "registration failed"});
         });
 };
+
 
 module.exports.getAllDealer = function(req, res, next) {
     servDealer.getAllDealer()

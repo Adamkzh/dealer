@@ -35,14 +35,12 @@ module.exports.getDealerById = function(dealerId) {
     });
 };
 
-module.exports.addDealer = function(dealerName, dealerUsername, dealerPassword) {
+module.exports.getDealerByUsername = function(username) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'insert into dealer (DealerName, DealerUsername, DealerPassword) values ?';
-        let values = [
-            [dealerName, dealerUsername, dealerPassword],
-        ];
-        dbUtil.query(queryStr, [values], function(err, result, fields) {
+            'select * from dealer ' +
+            'where DealerUsername = ?';
+        dbUtil.query(queryStr, username, function(err, result, fields) {
             if (err) {
                 reject(err);
                 return;
@@ -50,9 +48,55 @@ module.exports.addDealer = function(dealerName, dealerUsername, dealerPassword) 
             if (result.length === 0) {
                 result.push({});
             }
-            resolve(JSON.parse(JSON.stringify(result)));
+            resolve(JSON.parse(JSON.stringify(result[0])));
         });
     });
+};
+
+module.exports.addDealer = function(dealerName, dealerUsername, dealerPassword) {
+    return new Promise((resolve, reject) => {
+		
+		function callback (retJson) {
+			let queryStr =
+				'insert into dealer (DealerName, DealerUsername, DealerPassword, Salt, Hash) values ?';
+			let values = [
+				[dealerName, dealerUsername, dealerPassword, retJson["salt"], retJson["hash"]],
+			];
+			dbUtil.query(queryStr, [values], function(err, result, fields) {
+				if (err) {
+					reject(err);
+					return;
+				}
+				if (result.length === 0) {
+					result.push({});
+				}
+				resolve(JSON.parse(JSON.stringify(result)));
+			});
+		}
+		
+		encryptPassword(dealerPassword, callback);
+    });
+};
+
+function encryptPassword (password, callback) {
+	
+	const bcrypt = require('bcrypt');
+	const saltRounds = 10;
+	const myPlaintextPassword = password;
+	
+	bcrypt.genSalt(saltRounds, function(err, salt) {
+		console.log(salt);
+		
+		bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+			// Store hash in your password DB.
+			
+			console.log(hash)
+			console.log('\n')
+			
+			callback({"salt":salt, "hash": hash});
+		});
+	});
+
 };
 
 module.exports.addDealerCar = function(dealerID, carID) {
