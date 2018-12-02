@@ -1,18 +1,17 @@
 let individualServices = require('../services/individual-services');
 
 module.exports.postLogin = function(req, res, next) {
-    let id = req.body.id;
+    //let id = req.body.id;
 	var username = req.body.username;
+	console.log(username);
     let password = req.body.password;
-    if(!id || id.length === 0) {
-        res.json({error: "id cannot be empty"});
-        return;
-    }
+
+	
     if(!password || password.length === 0) {
         res.json({error: "password cannot be empty"});
         return;
     }
-    individualServices.getIndividualById(id)
+    individualServices.getIndividualByUsername(username)
         .then(individual => {
             if (!individual.IndividualID) {
                 res.status(404);

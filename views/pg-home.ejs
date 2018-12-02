@@ -7,58 +7,19 @@
 </head>
 <body>
 <% include ./body-nav.ejs %>
-<div class="bg-image"></div>
-
-<div class="bg-text">
-  <h2>U.S. No.1 car Selling Website</h2>
-  <h1 style="font-size:50px">Lowest Price Guaranteed</h1>
-  <p>And You Can Post Your Car For Sale</p>
-</div>
 
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-9 dm-home-left-panel">
-			<div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-				<table class="table2">
-					<tr>
-					</tr>
-                      <tr>
-                        <th><img src="/images/home/car1.png" alt="Trulli" width="350" height="250"></th>
-                        <th><img src="/images/home/car2.png" alt="Trulli" width="350" height="250"></th>
-                        <th><img src="/images/home/car3.png" alt="Trulli" width="350" height="250"></th>
-                      </tr>
-                </table>
-			</div>
-           
-        </div>
+
         <div class="col-lg-3 dm-home-right-panel">
             <!-- login panel -->
             <% if (!userInfo.IndividualID && !userInfo.DealerId) { %>
                 <div class="row">
                     <form class="dm-home-login-form" id="homeLoginForm">
                         <div class="form-group mt-4">
-                            <label class="control-label"  for="userId">User ID: </label>
-                            <input type="text" class="form-control" id="userId"  placeholder="Enter user ID" required>
+                            <label class="control-label"  for="userId">Username: </label>
+                            <input type="text" class="form-control" id="userId"  placeholder="Enter username" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label"  for="password">Password: </label>
@@ -249,6 +210,40 @@
 </div>
 <br>
 <br>
+
+
+
+<div class="col-lg-9 dm-home-left-panel">
+	<div>
+
+		<table class="table2">
+			<tr>
+			</tr>
+			  <tr>
+				<th><img src="/images/home/car1.png" alt="Trulli" width="350" height="250"></th>
+				<th><img src="/images/home/car2.png" alt="Trulli" width="350" height="250"></th>
+				<th><img src="/images/home/car3.png" alt="Trulli" width="350" height="250"></th>
+			  </tr>
+		</table>
+	</div>
+   
+</div>
+
+
+
+
+<div class="bg-image"></div>
+
+<div class="bg-text" style="display:none">
+  <h2>U.S. No.1 car Selling Website</h2>
+  <h1 style="font-size:50px">Lowest Price Guaranteed</h1>
+  <p>And You Can Post Your Car For Sale</p>
+</div>
+
+
+
+
+
 
 <br>
 <hr>

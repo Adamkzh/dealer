@@ -12,10 +12,11 @@ $(function() {
         $.ajax({
             method: "POST",
             url: "/login",
-            data: { "id": userId, "password": userPwd, "accountType": accountType }
+            data: { "username": userId, "password": userPwd, "accountType": accountType }
         })
         .done(function(result) {
             // reload current url
+			alert("you've successfully logged in!")
             location.reload();
         })
         .fail(function(result) {

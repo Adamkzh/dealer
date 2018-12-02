@@ -18,6 +18,24 @@ module.exports.getIndividualById = function(userId) {
     });
 };
 
+module.exports.getIndividualByUsername = function(username) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            'select * from individual ' +
+            'where individual.Username = ?';
+        dbUtil.query(queryStr, username, function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            resolve(JSON.parse(JSON.stringify(result[0])));
+        });
+    });
+};
+
 module.exports.getIndividualByFirstAndLast = function(firstName, lastName) {
     return new Promise((resolve, reject) => {
         let queryStr =
