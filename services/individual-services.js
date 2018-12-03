@@ -21,8 +21,8 @@ module.exports.getIndividualById = function(userId) {
 module.exports.getIndividualByUsername = function(username) {
     return new Promise((resolve, reject) => {
         let queryStr =
-            'select * from individual ' +
-            'where individual.Username = ?';
+            'select * from IndividualView ' +
+            'where IndividualView.Username = ?';
         dbUtil.query(queryStr, username, function(err, result, fields) {
             if (err) {
                 reject(err);
