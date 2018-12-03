@@ -96,7 +96,24 @@ module.exports.getIndividualToIndividualTransaction = function(tId) {
     });
 };
 
-
+module.exports.addDealerToIndividualTransactionSP = function(dealerId, transactionId, IndividualID, carID) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            `call addDealerToIndividualTransaction(${parseInt(dealerId)}, ${parseInt(transactionId)}, 
+            ${parseInt(IndividualID)}, ${parseInt(carID)})`;
+        dbUtil.query(queryStr, [], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            let totalResult = JSON.parse(JSON.stringify({result}));
+            resolve(totalResult);
+        });
+    });
+};
 
 // Done: test done by xiaoran lin
 module.exports.addDealerToIndividualTransaction = function(dealerId, transactionId, IndividualID, carID) {

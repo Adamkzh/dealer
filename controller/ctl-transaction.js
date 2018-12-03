@@ -108,7 +108,7 @@ module.exports.addDealerToIndividualTransaction = function(req, res, next) {
             //console.log(result);
             var resultOne = result;
 
-            transactionServices.addDealerToIndividualTransaction(req.body.dealerId, result["insertId"],
+            transactionServices.addDealerToIndividualTransactionSP(req.body.dealerId, result["insertId"],
                 req.body.individualId, req.body.carId)
                 .then((result) => {
                     //console.log(result);
