@@ -2,11 +2,12 @@
 <html>
 <head>
     <% include ./meta-resources.ejs %>
-    <link rel='stylesheet' href='/stylesheets/home.css' />
     <link rel='stylesheet' href='/stylesheets/signup.css' />
-    <link rel='stylesheet' href='/stylesheets/register.css' />
 </head>
 <body>
+<div class="dm-signup container mt-4">
+    <div class="row">
+        <div class="col-lg-5 container">
     <form class="form-horizontal mt-5" id="dealerRegisterForm" action='/post-car' method="POST">
         <fieldset>
             <div class="form-group">
@@ -43,12 +44,15 @@
                     userInfo.IndividualID : (userInfo.DealerId ? userInfo.DealerId : -1)%>">
             <input type="hidden" name="accountType" value="<%= accountType %>">
             <button class="btn dm-btn-success">Post </button>
+            <button class="btn dm-btn-success"><a href="/">Cancel </a></button>
             <br>
             <br>
             <p>Create and you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
         </fieldset>
     </form>
-
+        </div>
+    </div>
+</div>
     <!-- libraries -->
     <% include ./lib-url.ejs %>
 </body>
