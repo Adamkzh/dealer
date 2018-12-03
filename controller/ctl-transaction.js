@@ -150,7 +150,7 @@ module.exports.addIndividualToIndividualTransaction = function(req, res, next) {
         .then((result) => {
             //console.log(result);
             var resultOne = result;
-            transactionServices.addIndividualToIndividualTransaction(req.body.individualId, result["insertId"],
+            transactionServices.addIndividualToIndividualTransactionSP(req.body.individualId, result["insertId"],
                 req.body.buyerId, req.body.carId)
                 .then((result) => {
                     //console.log(result);

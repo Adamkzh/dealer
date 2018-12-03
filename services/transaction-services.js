@@ -292,6 +292,25 @@ module.exports.addIndividualToDealerTransaction = function(dealerId, transaction
     });
 };
 
+module.exports.addIndividualToIndividualTransactionSP = function(individualSellerID, transactionId, individualBuyerID, carID) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            `call addIndividualToIndividualTransaction(${parseInt(individualSellerID)}, ${parseInt(transactionId)}, 
+            ${parseInt(individualBuyerID)}, ${parseInt(carID)})`;
+        dbUtil.query(queryStr, [], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            let totalResult = JSON.parse(JSON.stringify({result}));
+            resolve(totalResult);
+        });
+    });
+};
+
 // Done: individual to individual transactions
 module.exports.addIndividualToIndividualTransaction = function(individualSellerID, transactionId, individualBuyerID, carID) {
     return new Promise((resolve, reject) => {
