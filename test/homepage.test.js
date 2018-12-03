@@ -8,3 +8,12 @@ describe("homepage", function(){
         .expect(/Cars On Sale From Dealer!/, done)
     })
 })
+
+describe("Post Car", function(){
+    it("post car page test", function(done){
+        request(app).get("/post-car")
+        .expect(200)
+        .expect(/Manufacture:/, done)
+    })
+
+})

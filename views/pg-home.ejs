@@ -10,13 +10,11 @@
 
 
 <div class="container">
-    <div class="row">
 
-        <div class="col-lg-3 dm-home-right-panel">
+        <div class="col-lg-3 dm-home-left-panel float-right">
             <!-- login panel -->
             <% if (!userInfo.IndividualID && !userInfo.DealerId) { %>
-                <div class="row">
-                    <form class="dm-home-login-form" id="homeLoginForm">
+                    <form class="login" id="homeLoginForm">
                         <div class="form-group mt-4">
                             <label class="control-label"  for="userId">Username: </label>
                             <input type="text" class="form-control" id="userId"  placeholder="Enter username" required>
@@ -45,18 +43,11 @@
                         <br>
                         </div>
                     </form>
-                </div>
             <% } %>
         </div>
-
-    </div>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<h2>Cars On Sale From Dealer!</h2>
+<h2 class="head" align="center">Cars On Sale From Dealer!</h2>
 
 <table class="table-fill">
   <thead>
@@ -125,18 +116,12 @@
   
 </div>
 
-<br>
-<br>
-<br>
-<div align="center">
+<div align="center" align="center">
 <a href="/home/dealerCars/<%= position.dPrev %>" class="previous round">&#8249;</a>
 <a href="/home/dealerCars/<%= position.dStart%>" class="next round">&#8250;</a>
 </div>
-<br>
-<br>
-<br>
 
-<h2>Cars On Sale From Individual!</h2>
+<h2 class="head" align="center">Cars On Sale From Individual!</h2>
 
 <table class="table-fill">
     <thead>
@@ -213,37 +198,18 @@
 
 
 
-<div class="col-lg-9 dm-home-left-panel">
-	<div>
-
-		<table class="table2">
-			<tr>
-			</tr>
-			  <tr>
-				<th><img src="/images/home/car1.png" alt="Trulli" width="350" height="250"></th>
-				<th><img src="/images/home/car2.png" alt="Trulli" width="350" height="250"></th>
-				<th><img src="/images/home/car3.png" alt="Trulli" width="350" height="250"></th>
-			  </tr>
-		</table>
-	</div>
-   
+<div class="col-lg-9 dm-home-panel" style="margin-left: 5%">
+    <table class="table2" align="center">
+        <tr>
+        </tr>
+            <tr>
+            <th><img src="/images/home/car1.png" alt="Trulli" width="350" height="250"></th>
+            <th><img src="/images/home/car2.png" alt="Trulli" width="350" height="250"></th>
+            <th><img src="/images/home/car3.png" alt="Trulli" width="350" height="250"></th>
+            <th><img src="https://shiftcars1.imgix.net/content/con1h1074PKTyVFsqQReGqBNbCot5gJ9eeYesqC7o5nXKp4BpMVq8U?w=375&h=&auto=format%2Ccompress" alt="Trulli" width="350" height="250"></th>
+            </tr>
+    </table>
 </div>
-
-
-
-
-<div class="bg-image"></div>
-
-<div class="bg-text" style="display:none">
-  <h2>U.S. No.1 car Selling Website</h2>
-  <h1 style="font-size:50px">Lowest Price Guaranteed</h1>
-  <p>And You Can Post Your Car For Sale</p>
-</div>
-
-
-
-
-
 
 <br>
 <hr>
