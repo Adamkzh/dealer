@@ -193,6 +193,25 @@ module.exports.addDealerToIndividualTransaction = function(dealerId, transaction
     });
 };
 
+module.exports.addIndividualToDealerTransactionSP = function(dealerId, transactionId, individualID, carID) {
+    return new Promise((resolve, reject) => {
+        let queryStr =
+            `call addIndividualToDealerTransaction(${parseInt(dealerId)}, ${parseInt(transactionId)}, 
+            ${parseInt(individualID)}, ${parseInt(carID)})`;
+        dbUtil.query(queryStr, [], function(err, result, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (result.length === 0) {
+                result.push({});
+            }
+            let totalResult = JSON.parse(JSON.stringify({result}));
+            resolve(totalResult);
+        });
+    });
+};
+
 // Done: need to test out the function if works correctly
 module.exports.addIndividualToDealerTransaction = function(dealerId, transactionId, individualID, carID) {
     return new Promise((resolve, reject) => {
