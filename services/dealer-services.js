@@ -199,7 +199,7 @@ module.exports.getDealerTransaction = function(dealerId) {
     return new Promise((resolve, reject) => {
         let queryStrOne =
             'select * from dealer_buy_involve dbi join transaction t on dbi.TransactionID = t.TransactionID' +
-            ' where dbi.DealerID = ?';
+            ' join car_involve ci on t.TransactionID = ci.TransactionID join car c on ci.CarID = c.CarID where dbi.DealerID = ?';
         dbUtil.query(queryStrOne, dealerId, function(err, result, fields) {
             if (err) {
                 reject(err);
@@ -211,7 +211,7 @@ module.exports.getDealerTransaction = function(dealerId) {
             let buyInvolve = result;
             let queryStrTwo =
                 'select * from dealer_sell_involve dsi join transaction t on dsi.TransactionID = t.TransactionID' +
-                ' where dsi.DealerID = ?';
+                ' join car_involve ci on t.TransactionID = ci.TransactionID join car c on ci.CarID = c.CarID where dsi.DealerID = ?';
             dbUtil.query(queryStrTwo, dealerId, function(err, result, fields) {
                 if (err) {
                     reject(err);
@@ -221,6 +221,7 @@ module.exports.getDealerTransaction = function(dealerId) {
                     result.push({});
                 }
                 result = buyInvolve.concat(result);
+                console.log(result);
                 resolve(JSON.parse(JSON.stringify(result)));
             });
         });

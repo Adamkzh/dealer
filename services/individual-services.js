@@ -212,7 +212,7 @@ module.exports.getIndividualTransaction = function(individualId) {
     return new Promise((resolve, reject) => {
         let queryStrOne =
             'select * from individual_buy_involve ibi join transaction t on ibi.TransactionID = t.TransactionID' +
-            ' where ibi.IndividualID = ?';
+            ' join car_involve ci on t.TransactionID = ci.TransactionID join car c on ci.CarID = c.CarID where ibi.IndividualID = ?';
         dbUtil.query(queryStrOne, individualId, function(err, result, fields) {
             if (err) {
                 reject(err);
@@ -224,7 +224,7 @@ module.exports.getIndividualTransaction = function(individualId) {
             let buyInvolve = result;
             let queryStrTwo =
                 'select * from individual_sell_involve isi join transaction t on isi.TransactionID = t.TransactionID' +
-                ' where isi.IndividualID = ?';
+                ' join car_involve ci on t.TransactionID = ci.TransactionID join car c on ci.CarID = c.CarID where isi.IndividualID = ?';
             dbUtil.query(queryStrTwo, individualId, function(err, result, fields) {
                 if (err) {
                     reject(err);
