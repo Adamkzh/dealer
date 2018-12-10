@@ -27,14 +27,14 @@
         </ul>
         <div id="tabs-rst-list">
             <h3>Posted Cars</h3>
-            <table class="table1">
+            <table class="table table-bordered">
                 <tr>
                     <th>Car ID</th>
                     <th>Manufacture</th>
                     <th>Model</th>
                     <th>Year</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Edit Option</th>
                 </tr>
                 <% postedCars.forEach(function(car) { %>
                     <% if (car.CarID) { %>
@@ -53,7 +53,7 @@
         </div>
         <div id="tabs-followers">
             <h3>Transactions In Progress</h3>
-            <table class="table1">
+            <table class="table table-bordered">
                 <tr>
                     <th>Transaction ID</th>
                     <th>DateTime</th>
@@ -62,7 +62,6 @@
                     <th>Manufacture</th>
                     <th>Model</th>
                     <th>Year</th>
-                    <th></th>
                 </tr>
                 <% transactions.forEach(function(transaction) { %>
                     <% if (transaction.TransactionID) { %>
